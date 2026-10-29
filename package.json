@@ -1,0 +1,50 @@
+{
+  "name": "atelier-machine-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Programmatic Video Studio (Remotion + video-shotcraft + anatomy) for XUNA — AI Evolving Pixel Pet",
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "setup:skills": "npx skills add Vincentwei1021/video-shotcraft -y && npx skills add wheresryan22/anatomy -y",
+    "sync:xuna": "tsx scripts/sync-xuna-assets.ts",
+    "tts:generate": "tsx scripts/generate-tts.ts",
+    "render:vertical": "remotion render src/index.ts XunaStoryVertical out/xuna-story-9x16.mp4",
+    "render:horizontal": "remotion render src/index.ts XunaStoryHorizontal out/xuna-story-16x9.mp4",
+    "still": "remotion still src/index.ts XunaStoryVertical",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.0.0",
+    "@react-three/fiber": "^9.0.0",
+    "@remotion/captions": "4.0.484",
+    "@remotion/cli": "4.0.484",
+    "@remotion/motion-blur": "4.0.484",
+    "@remotion/paths": "4.0.484",
+    "@remotion/sfx": "4.0.484",
+    "@remotion/shapes": "4.0.484",
+    "@remotion/studio": "4.0.484",
+    "@remotion/tailwind": "4.0.484",
+    "@remotion/three": "4.0.484",
+    "@remotion/transitions": "4.0.484",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.3",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.484",
+    "roughjs": "^4.6.6",
+    "shiki": "^3.2.1",
+    "shiki-magic-move": "^1.2.0",
+    "tailwindcss": "^3.4.17",
+    "three": "^0.174.0",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "^19.0.4",
+    "@types/three": "^0.174.0",
+    "tsx": "^4.19.3",
+    "typescript": "5.8.2"
+  }
+}
+
