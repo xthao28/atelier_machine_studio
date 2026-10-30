@@ -54,7 +54,7 @@ export const Scene02Foundation: React.FC<{ dark?: boolean }> = ({ dark = false }
       </Abs>
 
       {/* Headline: 5 words, single line, sentence case */}
-      <PixelWipe at={4} className="am-abs am-h2" style={{ left: safe.left, top: 418, width: safeWidth }}>
+      <PixelWipe at={4} className="am-abs am-h2" style={{ left: safe.left, top: 418, width: 920 }}>
         Three layers keep XUNA alive
       </PixelWipe>
 

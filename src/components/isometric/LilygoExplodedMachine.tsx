@@ -1,4 +1,5 @@
 import React from "react";
+import { staticFile } from "remotion";
 import * as k from "./kit/iso-kit";
 import {
   AM_ISO_CSS,
@@ -348,8 +349,15 @@ export const LilygoExplodedMachine: React.FC<LilygoExplodedMachineProps> = ({
     0.4,
   );
 
-  // Subtle breathing of XUNA inside the 320×170 IPS screen
-  const petBob = Math.sin((clock.frame / clock.fps) * Math.PI * 2.2) * 0.9;
+  // Authentic XUNA sprite frame index (16 columns × 4 rows in track_a_frames.png)
+  // Row 0 = look_around, Row 2 = bounce_play (when GPIO0 praised), Row 1 = yawn_stretch (when GPIO14)
+  const spriteCol = Math.floor(clock.frame / 6) % 16;
+  const spriteRow = isPraised ? 2 : isScolded ? 0 : 3;
+  const lcdScale = 98 / 320; // Maps 320×170 LCD pixels onto the 98×49 world-unit active screen plane
+  const spriteW = 96 * lcdScale;
+  const spriteH = 72 * lcdScale;
+  const spriteX = 112 * lcdScale;
+  const spriteY = 64 * lcdScale;
 
   // World Z coordinates for alignment lines & callouts
   const z1World = T1_FLOOR_Z + t1ShiftZ;
@@ -618,99 +626,94 @@ export const LilygoExplodedMachine: React.FC<LilygoExplodedMachineProps> = ({
           <Solid paths={T3_GEO.activeViewport} tone="hi" accent="orange" crease="lo" />
           <Line d={T3_GEO.activeBorder} tone="hi" />
 
-          {/* Isometric Projected 320×170 LCD Screen Content */}
+          {/* Isometric Projected 320×170 LCD Screen Content (Real XUNA Room + Sprite) */}
           <g transform={T3_GEO.screenMatrix}>
-            {/* Top telemetry bar inside the 320×170 IPS screen */}
-            <rect x={2.5} y={2.5} width={93} height={7.2} fill="var(--ink)" />
-            <text
-              x={5.5}
-              y={7.4}
-              fill="var(--paper)"
-              fontFamily="var(--f-mono)"
-              fontSize={3.8}
-              fontWeight={500}
-              letterSpacing="0.06em"
-            >
-              ST7789V · 320×170 IPS
-            </text>
-            <text
-              x={92.5}
-              y={7.4}
-              fill="var(--lime)"
-              fontFamily="var(--f-mono)"
-              fontSize={3.6}
-              fontWeight={500}
-              textAnchor="end"
-            >
-              {activeSlot === 0 ? "BANK:A" : "BANK:B"}
-            </text>
+            <defs>
+              <clipPath id="lilygo-lcd-clip">
+                <rect x={0} y={0} width={98} height={49} />
+              </clipPath>
+              <clipPath id="lilygo-xuna-sprite-clip">
+                <rect x={spriteX} y={spriteY} width={spriteW} height={spriteH} />
+              </clipPath>
+            </defs>
 
-            {/* Dotted pixel floor inside XUNA's habitat */}
-            <line
-              x1={3}
-              y1={37}
-              x2={95}
-              y2={37}
-              stroke="var(--ink)"
-              strokeWidth={0.8}
-              strokeDasharray="2.5 2.5"
-            />
+            <g clipPath="url(#lilygo-lcd-clip)">
+              {/* Real 320×170 pixel-art room background from xuna_pet */}
+              <image
+                href={staticFile("xuna-sync/sprites/room_background.png")}
+                x={0}
+                y={0}
+                width={98}
+                height={49}
+                preserveAspectRatio="none"
+                style={{ imageRendering: "pixelated" }}
+              />
 
-            {/* Stepped Pixel-Art XUNA Specimen in center of the 320×170 screen */}
-            <g transform={`translate(38, ${15.5 + petBob})`}>
-              <rect x={2} y={18} width={18} height={2.2} fill="var(--ink)" opacity={0.32} />
-              <rect x={3} y={2} width={16} height={2.4} fill="var(--ink)" />
-              <rect x={1} y={4.4} width={20} height={11.5} fill="var(--ink)" />
-              <rect x={3.5} y={15.9} width={4.5} height={2.6} fill="var(--ink)" />
-              <rect x={14} y={15.9} width={4.5} height={2.6} fill="var(--ink)" />
-              <rect x={3.2} y={4.4} width={15.6} height={9.6} fill="var(--paper)" />
+              {/* Real animated XUNA sprite from track_a_frames.png (16 cols × 4 rows) */}
+              <g clipPath="url(#lilygo-xuna-sprite-clip)">
+                <image
+                  href={staticFile("xuna-sync/sprites/track_a_frames.png")}
+                  x={spriteX - spriteCol * spriteW}
+                  y={spriteY - spriteRow * spriteH}
+                  width={spriteW * 16}
+                  height={spriteH * 4}
+                  preserveAspectRatio="none"
+                  style={{ imageRendering: "pixelated" }}
+                />
+              </g>
 
-              {/* Expressive pixel eyes reacting to GPIO0 / GPIO14 */}
-              {isPraised ? (
+              {/* Top telemetry bar inside the 320×170 IPS screen */}
+              <rect x={0} y={0} width={98} height={7.2} fill="var(--ink)" opacity={0.88} />
+              <text
+                x={3.5}
+                y={5.1}
+                fill="var(--paper)"
+                fontFamily="var(--f-mono)"
+                fontSize={3.6}
+                fontWeight={500}
+                letterSpacing="0.06em"
+              >
+                ST7789V · 320×170 IPS
+              </text>
+              <text
+                x={94.5}
+                y={5.1}
+                fill="var(--lime)"
+                fontFamily="var(--f-mono)"
+                fontSize={3.5}
+                fontWeight={500}
+                textAnchor="end"
+              >
+                {activeSlot === 0 ? "BANK:A" : "BANK:B"}
+              </text>
+
+              {/* Bottom live reaction pill inside the 320×170 screen */}
+              {(isPraised || isScolded) ? (
                 <>
-                  <path d="M5.5 8.5 L7.2 6.8 L8.9 8.5" stroke="var(--ink)" strokeWidth={1.2} fill="none" />
-                  <path d="M13.1 8.5 L14.8 6.8 L16.5 8.5" stroke="var(--ink)" strokeWidth={1.2} fill="none" />
+                  <rect
+                    x={4}
+                    y={41.2}
+                    width={90}
+                    height={6.2}
+                    fill={isPraised ? "var(--lime)" : "var(--lilac)"}
+                    stroke="var(--ink)"
+                    strokeWidth={0.7}
+                  />
+                  <text
+                    x={49}
+                    y={45.5}
+                    fill="var(--ink)"
+                    fontFamily="var(--f-mono)"
+                    fontSize={3.3}
+                    fontWeight={500}
+                    textAnchor="middle"
+                    letterSpacing="0.05em"
+                  >
+                    {isPraised ? "GPIO0 (+1) · PRAISE" : "GPIO14 (-1) · SCOLD"}
+                  </text>
                 </>
-              ) : isScolded ? (
-                <>
-                  <rect x={5.5} y={7.8} width={3.6} height={1.3} fill="var(--ink)" />
-                  <rect x={12.9} y={7.8} width={3.6} height={1.3} fill="var(--ink)" />
-                </>
-              ) : (
-                <>
-                  <rect x={6.2} y={6.8} width={2.4} height={3.2} fill="var(--ink)" />
-                  <rect x={13.4} y={6.8} width={2.4} height={3.2} fill="var(--ink)" />
-                </>
-              )}
-              <rect x={9.6} y={11.0} width={2.8} height={1.2} fill="var(--ink)" />
+              ) : null}
             </g>
-
-            {/* Bottom status readout bar inside the 320×170 screen */}
-            <rect
-              x={3.5}
-              y={39.2}
-              width={91}
-              height={6.6}
-              fill={isPraised ? "var(--lime)" : isScolded ? "var(--lilac)" : "var(--paper)"}
-              stroke="var(--ink)"
-              strokeWidth={0.7}
-            />
-            <text
-              x={49}
-              y={43.8}
-              fill="var(--ink)"
-              fontFamily="var(--f-mono)"
-              fontSize={3.5}
-              fontWeight={500}
-              textAnchor="middle"
-              letterSpacing="0.05em"
-            >
-              {isPraised
-                ? "GPIO0 (+1) · PRAISE RECORDED"
-                : isScolded
-                  ? "GPIO14 (-1) · SCOLD RECORDED"
-                  : "XUNA LIFECORE · 3.3V LOCAL"}
-            </text>
           </g>
         </g>
 
