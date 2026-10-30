@@ -10,6 +10,7 @@
     "ds:build": "tsx scripts/build-design-system.ts",
     "ds:sheet": "remotion still src/index.ts AmComponentSheet out/am-component-sheet.png --scale=0.5",
     "render:reveal": "remotion render src/index.ts AmProjectRevealVertical out/am-project-reveal-9x16.mp4",
+    "render:scene02": "remotion render src/index.ts Scene02Foundation out/scene02-lilygo-9x16.mp4",
     "tts:generate": "tsx scripts/generate-tts.ts",
     "render:vertical": "remotion render src/index.ts XunaStoryVertical out/xuna-story-9x16.mp4",
     "render:horizontal": "remotion render src/index.ts XunaStoryHorizontal out/xuna-story-16x9.mp4",
