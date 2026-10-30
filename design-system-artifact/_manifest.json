@@ -1,0 +1,435 @@
+{
+  "ver": "1793322706-488e",
+  "files": {
+    "SKILL.md": {
+      "sha256": "86b399f63deea74a1b52975c475f51d8522078d1f1c22fe48747260332a36001",
+      "size": 16044,
+      "contentType": "text/markdown"
+    },
+    "artifact-type/app.css": {
+      "sha256": "a7d541f4e3662e52cfa18ea2e62b0f5161ce3c4f168bc581f36cd9b32fa7d768",
+      "size": 484936,
+      "contentType": "text/css"
+    },
+    "artifact-type/app.js": {
+      "sha256": "d753f361a54defc283792d6e39248df73cbc84ad0be019249edd32b9f5b36716",
+      "size": 2000083,
+      "contentType": "text/javascript"
+    },
+    "artifact-type/demo.json": {
+      "sha256": "ba5c9dc5778930275d1acb91048fed12d18acbf1e85f4d54292b3a9deadc2843",
+      "size": 164928,
+      "contentType": "application/json"
+    },
+    "artifact-type/fonts/anthropicons-fizzy-lake.woff2": {
+      "sha256": "eca97a511bd2caa68f22804e46f9c35dbcb2d47669d62ed879e2671e5b16c9f9",
+      "size": 34092,
+      "contentType": "font/woff2"
+    },
+    "artifact-type/reference/cover.md": {
+      "sha256": "d5957e8a4c430a87d8d3c5f28526d0f966dfc28f539039f25252becb32528e3d",
+      "size": 6698,
+      "contentType": "text/markdown"
+    },
+    "artifact-type/reference/craft.md": {
+      "sha256": "9c4902b343ec5829626a65cc507249c1124ce6c4219f6ea5a1a34007506fa6ca",
+      "size": 8580,
+      "contentType": "text/markdown"
+    },
+    "artifact-type/reference/format.md": {
+      "sha256": "fc2a291c26517dbbfe81e18a8efefa40f56f6e570f2f7629cd7006ac41fd1b2e",
+      "size": 16206,
+      "contentType": "text/markdown"
+    },
+    "artifact-type/reference/from-code.md": {
+      "sha256": "bac86e3ae10362835e48470b07c3f9e462440e569d3824baf0c341c1fb22eb8a",
+      "size": 13328,
+      "contentType": "text/markdown"
+    },
+    "artifact-type/reference/from-design-tool.md": {
+      "sha256": "8033bfe399da68c8aee6ff6df05df41d494723216abce16e39642e491503fcd0",
+      "size": 16116,
+      "contentType": "text/markdown"
+    },
+    "artifact-type/reference/sample-seazar-tokens.json": {
+      "sha256": "a17410b515e73b1a36d6b3b9164575bb1fcd8b0931ecb7f5f5b2c8bdfcf5bfa6",
+      "size": 11291,
+      "contentType": "application/json"
+    },
+    "artifact-type/run.html": {
+      "sha256": "ceffa563946ece66350de2425f5a6559839e89adf82ea24de7d4d86982455abb",
+      "size": 2676,
+      "contentType": "text/html"
+    },
+    "index.html": {
+      "sha256": "6b99cf31c4c72ef65f13875789d38ca520d9f365d5ecc2fae7a1b7a3067c26c2",
+      "size": 32639,
+      "contentType": "text/html"
+    },
+    "project/README.md": {
+      "sha256": "cd5d712567e421f8e7ca6e92eac77f04af68b9ebe2c8890e12189486c8f9af55",
+      "size": 5591,
+      "contentType": "text/markdown"
+    },
+    "project/components/Annotations/README.md": {
+      "sha256": "0cc012304d43d3e4cfb9ecf888b429a783bf66b3e4a9f5a826adefbf73861914",
+      "size": 269,
+      "contentType": "text/markdown"
+    },
+    "project/components/Annotations/preview.html": {
+      "sha256": "e14c29059e85213b1ebbc765b8bac742e0e2147a108fe381e15b7f9912e2113b",
+      "size": 5819,
+      "contentType": "text/html"
+    },
+    "project/components/BrandFooter/README.md": {
+      "sha256": "255b5ccf607b62674adc78534709957f00ae9c5483fec9e33f19030b15abca2f",
+      "size": 344,
+      "contentType": "text/markdown"
+    },
+    "project/components/BrandFooter/preview.html": {
+      "sha256": "657ef0a7c2d9b367643cfb33b0d4f32ff4cc69c8ea7757d4e5754df423318f18",
+      "size": 1402,
+      "contentType": "text/html"
+    },
+    "project/components/BrandHeader/README.md": {
+      "sha256": "736dd147249fc92f8edd043deb09df06310dd94a33921e07f3d979337f666f63",
+      "size": 465,
+      "contentType": "text/markdown"
+    },
+    "project/components/BrandHeader/preview.html": {
+      "sha256": "8ae3e3b081315be81f45eae1dffebb3801d9fd0bc613e61d5f4c772aa6b849d6",
+      "size": 1163,
+      "contentType": "text/html"
+    },
+    "project/components/CarouselNav/README.md": {
+      "sha256": "3cc1d6fba131ef7f82bcd5d35fadbf456cd9c9153766b24f935cc98dd2e8f08a",
+      "size": 332,
+      "contentType": "text/markdown"
+    },
+    "project/components/CarouselNav/preview.html": {
+      "sha256": "645493c55ff3af7768b410bb3dbd722ed8cc92cc995f2863b02bd2c66556fe70",
+      "size": 1022,
+      "contentType": "text/html"
+    },
+    "project/components/CategoryTag/README.md": {
+      "sha256": "cc5395345e39afe359367619f6ee994980866259045185851325a2ceeaba0a2f",
+      "size": 368,
+      "contentType": "text/markdown"
+    },
+    "project/components/CategoryTag/preview.html": {
+      "sha256": "e57a44316fc3a9afae33a662cae84568700f6d2dea776e520ab55757eabf8e2b",
+      "size": 1347,
+      "contentType": "text/html"
+    },
+    "project/components/CharacterFrame/README.md": {
+      "sha256": "5f3e732dc75c0e25c9603a6c6dc2a082b8d1db6d2d6bab331368ed001452bd41",
+      "size": 408,
+      "contentType": "text/markdown"
+    },
+    "project/components/CharacterFrame/preview.html": {
+      "sha256": "1d4ff4120307f3a26d6fe014df743981b12835402befb4c4a604ae2b601f3baf",
+      "size": 1524,
+      "contentType": "text/html"
+    },
+    "project/components/ColorBoard/README.md": {
+      "sha256": "a23fdd6686ecb4f2fee94ef06368c342e26d94a2d47198dde9aee595d35ed44b",
+      "size": 472,
+      "contentType": "text/markdown"
+    },
+    "project/components/ColorBoard/preview.html": {
+      "sha256": "498a798a36c0a2a5324b9dc487844c32d79453a46c596de7b361d7893b6cdc80",
+      "size": 6420,
+      "contentType": "text/html"
+    },
+    "project/components/Cover/preview.html": {
+      "sha256": "a224ccb08cd345ec0a66f4ac081a36f399ce83ad71934dbe24d4df8215f09461",
+      "size": 2483,
+      "contentType": "text/html"
+    },
+    "project/components/ExperimentId/README.md": {
+      "sha256": "cd60ab1f3b1a185313b7fd735530a9f2c6531b15aaab30f948073047d1bb4aef",
+      "size": 444,
+      "contentType": "text/markdown"
+    },
+    "project/components/ExperimentId/preview.html": {
+      "sha256": "4f712e02c58e1642807bd591a48506c38c84956c7feb21c0358098fc87e1cbbe",
+      "size": 1385,
+      "contentType": "text/html"
+    },
+    "project/components/Frames/README.md": {
+      "sha256": "febc25f426a00187f8773f5af6effc8cd9e9e2b930f0e3b6c007d15617182fa6",
+      "size": 363,
+      "contentType": "text/markdown"
+    },
+    "project/components/Frames/preview.html": {
+      "sha256": "872adc14d4f92d6db7b1187c478ebcbe6bd5ca7bd994427a08ee28ac3c973180",
+      "size": 5015,
+      "contentType": "text/html"
+    },
+    "project/components/GridBoard/README.md": {
+      "sha256": "7e406042b74c4ecf4870ee18b09915f4f8af88d45806a6300356b6c0f4630177",
+      "size": 446,
+      "contentType": "text/markdown"
+    },
+    "project/components/GridBoard/preview.html": {
+      "sha256": "80b63ecfeb69597857a42de95c4d10ea8bfee1e9a8cb2b0d4eb8159836f1a71b",
+      "size": 5475,
+      "contentType": "text/html"
+    },
+    "project/components/ImageFrame/README.md": {
+      "sha256": "e9a62f89589e1a9cd2861a88d514d0449f2b867113a5e82855a4106af8042abb",
+      "size": 411,
+      "contentType": "text/markdown"
+    },
+    "project/components/ImageFrame/preview.html": {
+      "sha256": "63a3ccdfc7dd367736be7e525e84cc3909bf1ff47004bf50b054d14fca1abaf4",
+      "size": 2188,
+      "contentType": "text/html"
+    },
+    "project/components/Labels/README.md": {
+      "sha256": "882626d592b30f864ba9828d3c3ae8c415c7c9325403ed9bba7979ad2716a32d",
+      "size": 297,
+      "contentType": "text/markdown"
+    },
+    "project/components/Labels/preview.html": {
+      "sha256": "fb5464744666f0dda32e43717493fa1d8a332372f654ad519d8e6e3e8deae0da",
+      "size": 3490,
+      "contentType": "text/html"
+    },
+    "project/components/MetadataBlock/README.md": {
+      "sha256": "814e07cc1b20b5a80293f04e7959619ab64d9a025cc647446656686f4e4fcd5d",
+      "size": 351,
+      "contentType": "text/markdown"
+    },
+    "project/components/MetadataBlock/preview.html": {
+      "sha256": "b91217d12ed787b736d8a038fb97f1b6b955388898042fcd2185f71ba1e6eaf3",
+      "size": 1072,
+      "contentType": "text/html"
+    },
+    "project/components/NumberedStep/README.md": {
+      "sha256": "722cc3eee3692c9e6e0be9a0c99dd9c5a9d3f9f7a4beadb689aa42697196a965",
+      "size": 341,
+      "contentType": "text/markdown"
+    },
+    "project/components/NumberedStep/preview.html": {
+      "sha256": "f8ab8c71cd54231204a61abab8756ca2631a9c7a05b1be3d73580a9d6cddd1fb",
+      "size": 1381,
+      "contentType": "text/html"
+    },
+    "project/components/PageNumbering/README.md": {
+      "sha256": "a375eb0b8965a80414ba129688b0acdc5d77c36dae9a73701f8489f2bbbaf125",
+      "size": 244,
+      "contentType": "text/markdown"
+    },
+    "project/components/PageNumbering/preview.html": {
+      "sha256": "7769641c37811f62ac70ac313d4b665c1d0170cf68b1e6fa2599a7d149dfab7b",
+      "size": 764,
+      "contentType": "text/html"
+    },
+    "project/components/ProgressIndicator/README.md": {
+      "sha256": "1e240883b74e2d99085276b5189d892051176f577aedd0e5d1f5bb96daff07be",
+      "size": 310,
+      "contentType": "text/markdown"
+    },
+    "project/components/ProgressIndicator/preview.html": {
+      "sha256": "a6cfa975b394c42134c126663d3414616a02e1d3bad1c2e99441029a00a98c29",
+      "size": 1453,
+      "contentType": "text/html"
+    },
+    "project/components/ProjectNumber/README.md": {
+      "sha256": "c69bc38a99470a3c92ff9afec7cee8071caea85c82c3f1813b974a3adee4a662",
+      "size": 324,
+      "contentType": "text/markdown"
+    },
+    "project/components/ProjectNumber/preview.html": {
+      "sha256": "6120eb8deaa79c2d6700c3bc7da75ea8a2082e1ff58bd5729f52172a7254dd94",
+      "size": 1065,
+      "contentType": "text/html"
+    },
+    "project/components/QuoteBlock/README.md": {
+      "sha256": "5e549a8157c19a52f11a778af7ffc9938b83ccb7d5bdebf2eee562699be5fc34",
+      "size": 339,
+      "contentType": "text/markdown"
+    },
+    "project/components/QuoteBlock/preview.html": {
+      "sha256": "470872538037b6421a358fba06bbbe2183a0522fd3fe3ff5b67e4347448134ae",
+      "size": 800,
+      "contentType": "text/html"
+    },
+    "project/components/Registration/README.md": {
+      "sha256": "2893e81bf47fbda57188b3880612fef04c95123fe286ce10d8a62f66eec17296",
+      "size": 454,
+      "contentType": "text/markdown"
+    },
+    "project/components/Registration/preview.html": {
+      "sha256": "e2ffaff83743c3a62e95f0eb139189cec6312367f1aa7b91f1903be4e57ae6d3",
+      "size": 5918,
+      "contentType": "text/html"
+    },
+    "project/components/SectionHeading/README.md": {
+      "sha256": "f3522bcd8842ce74c092556fc0a5b01aae11d7a2972951e5784747c971e78cd4",
+      "size": 303,
+      "contentType": "text/markdown"
+    },
+    "project/components/SectionHeading/preview.html": {
+      "sha256": "3efa2eacae2c267ab8b6ee8a39d8eb4d073adaa63a57f714999e4d764bb77b4e",
+      "size": 1122,
+      "contentType": "text/html"
+    },
+    "project/components/StatusIndicator/README.md": {
+      "sha256": "1e142b1d5e5492eb3472ca7f87dde5c6a8f65e18194d6efa4c02be374053c51a",
+      "size": 323,
+      "contentType": "text/markdown"
+    },
+    "project/components/StatusIndicator/preview.html": {
+      "sha256": "a5466c66a78691b6c147e4b15d8e7061fe96c77fcf5e3aa7adfaa37b62455bfd",
+      "size": 1297,
+      "contentType": "text/html"
+    },
+    "project/components/Symbols/README.md": {
+      "sha256": "80a487e98b9c03d82e062388d1f4e410d7207b9168e230c0c8a05eb02fe62500",
+      "size": 401,
+      "contentType": "text/markdown"
+    },
+    "project/components/Symbols/preview.html": {
+      "sha256": "aa800b5d9ef43e71390fa78cbb9a0ec3fc5a62d30ecbd12a321ec8eb75519f87",
+      "size": 6634,
+      "contentType": "text/html"
+    },
+    "project/components/TechnicalAnnotation/README.md": {
+      "sha256": "6840cbdbdd0e16256331d90fd45c1c4ed686b36c5a55c036fbacd9bbcd06f093",
+      "size": 355,
+      "contentType": "text/markdown"
+    },
+    "project/components/TechnicalAnnotation/preview.html": {
+      "sha256": "b46c9a98dbe2b1fb45c3b5bc9f00fcba3bc3ac6e1fbc240425a28ee30cd0eeae",
+      "size": 1491,
+      "contentType": "text/html"
+    },
+    "project/components/TechnicalLabel/README.md": {
+      "sha256": "51cba3fe74bf532c3dd39a284aa988d6acc2c57e716664e13673a7f0e1d622f9",
+      "size": 315,
+      "contentType": "text/markdown"
+    },
+    "project/components/TechnicalLabel/preview.html": {
+      "sha256": "9c348a2d6f14b6c2fdae4bb88fe7f299e74045809a08fdca129ba96f9febbf6c",
+      "size": 1590,
+      "contentType": "text/html"
+    },
+    "project/components/TemplateBuildLog/README.md": {
+      "sha256": "cc04499ceec81a41fab2eeaaa232949a34c051acae7968a6c08270859453a762",
+      "size": 671,
+      "contentType": "text/markdown"
+    },
+    "project/components/TemplateBuildLog/preview.html": {
+      "sha256": "cba204f05e43bf31d89c3b02aa55de3581f7a766ecab2ec11f19b1862cd67a37",
+      "size": 11968,
+      "contentType": "text/html"
+    },
+    "project/components/TemplateProjectReveal/README.md": {
+      "sha256": "ff59a7f59e79f9435e157818f0e485889631528476b17ea101536433579c1745",
+      "size": 720,
+      "contentType": "text/markdown"
+    },
+    "project/components/TemplateProjectReveal/preview.html": {
+      "sha256": "2c164e9f5d400529a22231f2575e34b221f3b7f6f29981a17f8daf6d689aeb7e",
+      "size": 12178,
+      "contentType": "text/html"
+    },
+    "project/components/TemplateTechExplainer/README.md": {
+      "sha256": "457f4547efea4d4e85bfb8cc12905836a5c66acd7cac44b111936a6e54bacd7d",
+      "size": 638,
+      "contentType": "text/markdown"
+    },
+    "project/components/TemplateTechExplainer/preview.html": {
+      "sha256": "81435f6cb3f432e8db93d32ed32c8bf680d3390f12072e4374cde093ac585f33",
+      "size": 10882,
+      "contentType": "text/html"
+    },
+    "project/components/Textures/README.md": {
+      "sha256": "8139014285310201763f0e0dda30a20450e0264fe44a597a9cb70c5dbbaef8ad",
+      "size": 348,
+      "contentType": "text/markdown"
+    },
+    "project/components/Textures/preview.html": {
+      "sha256": "cfd73897fec6b48b3f984c40cd4f52d463dee1beda2a74fda887951e49c8bf7d",
+      "size": 3341,
+      "contentType": "text/html"
+    },
+    "project/components/TypeBoard/README.md": {
+      "sha256": "e63f861d7ac2b2da3ab10d892f88c39c3d62547c14e605600e8f349f8e844ca1",
+      "size": 397,
+      "contentType": "text/markdown"
+    },
+    "project/components/TypeBoard/preview.html": {
+      "sha256": "e037a8fe8b11746078e5148f72fe93eaf84d58e78f576373c984d531991f6879",
+      "size": 5219,
+      "contentType": "text/html"
+    },
+    "project/components/bundle.css": {
+      "sha256": "d9090d4b656b1e475e5e4031e7c717c28b0a25b8a1a61be6d3c8d9087a55ce4c",
+      "size": 13201,
+      "contentType": "text/css"
+    },
+    "project/design-system.json": {
+      "sha256": "a429f669af8bbeef546278264c8edd21c68140bcf25dc55438ab086b3ba02dcd",
+      "size": 482,
+      "contentType": "application/json"
+    },
+    "project/fonts/IBMPlexMono-400Regular.ttf": {
+      "sha256": "ab08018ccd276b79fb2c636bb95b9c543598f9d50505fe92506fcb4dae7810cd",
+      "size": 133796,
+      "contentType": "font/ttf"
+    },
+    "project/fonts/IBMPlexMono-500Medium.ttf": {
+      "sha256": "8ae925744d53758b67a77ea35c2fc46d7b688c7d8c04da3b579902bed0ca0e17",
+      "size": 134956,
+      "contentType": "font/ttf"
+    },
+    "project/fonts/SpaceGrotesk-400Regular.ttf": {
+      "sha256": "637578d47b0e70e02b3eb5056847dd9add17bd683234d28f5d11a6cf66ff2725",
+      "size": 86588,
+      "contentType": "font/ttf"
+    },
+    "project/fonts/SpaceGrotesk-500Medium.ttf": {
+      "sha256": "d8135bce6603398f3d0cdb478a018d7fa869b0168d037a9408cad23e030bfa7a",
+      "size": 86612,
+      "contentType": "font/ttf"
+    },
+    "project/fonts/SpaceGrotesk-600SemiBold.ttf": {
+      "sha256": "279a5d22b8ab377f41706af566610667db3941b069b50187b98af09ca3b08f91",
+      "size": 86572,
+      "contentType": "font/ttf"
+    },
+    "project/fonts/SpaceGrotesk-700Bold.ttf": {
+      "sha256": "8fb63865c6afd083723dc1775548306b7751f20397bebcb79646032c598c81b9",
+      "size": 86516,
+      "contentType": "font/ttf"
+    },
+    "project/formats.md": {
+      "sha256": "dffadcae4c9d071662a0df0f6a2925826c96945a6231c7ac5bd3e967766e38a7",
+      "size": 2110,
+      "contentType": "text/markdown"
+    },
+    "project/graphic-language.md": {
+      "sha256": "517c446d7c52c77f12756f1e65ef9f5980884809e3f7a954679423a893d55cdb",
+      "size": 1829,
+      "contentType": "text/markdown"
+    },
+    "project/guidelines.md": {
+      "sha256": "dbbd47009a96c810ed2d4157504b002a1e1539ab7283d13064292d1f93bf5e97",
+      "size": 1606,
+      "contentType": "text/markdown"
+    },
+    "project/templates.md": {
+      "sha256": "75bcb9e9780c94a9873c91114701ce390b90a22562090f56bd9074f69d70dbf8",
+      "size": 1349,
+      "contentType": "text/markdown"
+    },
+    "project/tokens.json": {
+      "sha256": "0f151f2411579a993d3974656324e1771c45a87cc71ef2b7bf322ab8ce03fad1",
+      "size": 10103,
+      "contentType": "application/json"
+    }
+  }
+}

@@ -1,0 +1,138 @@
+/* ATELIER MACHINE — generated from tokens.json */
+/* Do not edit. Source: design-system-artifact/project/tokens.json · rebuild: npm run ds:build */
+/* No @font-face here: webpack cannot resolve /fonts URLs, so src/design-system/fonts.ts loads them with staticFile(). */
+
+:root, [data-theme="light"] {
+  --paper: #f2efe7;
+  --ink: #242424;
+  --lime: #d9f57a;
+  --lilac: #d9cbf6;
+  --orange: #ff9b56;
+  --paper-shade: #e4dfd1;
+  --ink-soft: #4a4a46;
+  --paper-soft: #b9b5aa;
+  --grid-line: #d6d1c1;
+  --surface: var(--paper);
+  --on-surface: var(--ink);
+  --muted: var(--ink-soft);
+  --rule: var(--ink);
+}
+[data-theme="dark"] {
+  --paper: #f2efe7;
+  --ink: #242424;
+  --lime: #d9f57a;
+  --lilac: #d9cbf6;
+  --orange: #ff9b56;
+  --paper-shade: #e4dfd1;
+  --ink-soft: #4a4a46;
+  --paper-soft: #b9b5aa;
+  --grid-line: #3b3b38;
+  --surface: var(--ink);
+  --on-surface: var(--paper);
+  --muted: var(--paper-soft);
+  --rule: var(--paper);
+}
+:root {
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 72px;
+  --space-7: 96px;
+  --margin-post: 72px;
+  --gutter: 24px;
+  --safe-top-vertical: 250px;
+  --safe-bottom-vertical: 450px;
+  --safe-right-vertical: 160px;
+  --radius-none: 0;
+  --radius-pill: 999px;
+  --radius-round: 50%;
+  --stroke-hair: 2px;
+  --stroke-line: 3px;
+  --stroke-heavy: 6px;
+  --grain-opacity: 0.07;
+  --halftone-opacity: 0.35;
+  --halftone-pitch: 14px;
+  --dot-pitch: 24px;
+  --grid-pitch: 72px;
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+.display-xl {
+  font-family: var(--font-sans);
+  font-size: 220px;
+  line-height: 0.88;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+.display {
+  font-family: var(--font-sans);
+  font-size: 144px;
+  line-height: 0.92;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+.h1 {
+  font-family: var(--font-sans);
+  font-size: 96px;
+  line-height: 0.98;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.h2 {
+  font-family: var(--font-sans);
+  font-size: 64px;
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.h3 {
+  font-family: var(--font-sans);
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.body-lg {
+  font-family: var(--font-sans);
+  font-size: 36px;
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.body {
+  font-family: var(--font-sans);
+  font-size: 32px;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.caption {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  line-height: 1.35;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+.meta {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+.data {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: 0;
+}

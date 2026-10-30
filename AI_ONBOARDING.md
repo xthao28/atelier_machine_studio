@@ -29,8 +29,10 @@ Sau khi chạy xong `npm run setup:skills`, hãy xác nhận 2 thư mục sau đ
 
 ## BƯỚC 2: ĐỌC CÁC TÀI LIỆU CHUẨN TRONG REPO (THEO THỨ TỰ)
 
-1. **[`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md) & [`src/styles/atelier-machine.css`](./src/styles/atelier-machine.css)**
+1. **[`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md)** (đọc §0 trước)
    - Đây là **Design System chính thức của studio `ATELIER MACHINE`** (*"Making Machines Feel Alive." / "Làm cho máy móc như có sự sống."*).
+   - **Nguồn chuẩn duy nhất** là artifact trong [`design-system-artifact/project/`](./design-system-artifact/project/) (`tokens.json` + `components/bundle.css`). Các file `src/styles/tokens.css`, `src/styles/atelier-machine.css`, `src/design-system/tokens.ts` được **sinh tự động** bằng `npm run ds:build`, không sửa tay. Trong code không gõ mã hex / cỡ chữ / độ dày viền trực tiếp: dùng CSS variable, class `.am-*`, Tailwind `am-*` hoặc `tokens.ts`.
+   - **Component React cho video** nằm ở [`src/design-system/`](./src/design-system/index.ts) (xem `DESIGN_SYSTEM.md` §11): `Slide`, `BrandHeader`, `CharacterFrame` + `PixelSprite` (sprite XUNA thật), `MetadataBlock`, `StatusIndicator`… cùng helper chuyển động `Cut` / `PixelWipe` (chỉ cắt cảnh và bước 8 frame). Mẫu dựng sẵn: [`src/compositions/AmProjectRevealVertical.tsx`](./src/compositions/AmProjectRevealVertical.tsx).
    - **Quy tắc bất di bất dịch:**
      - Phong cách: **Contemporary Retro-Futurism** (tạp chí kỹ thuật thập niên 1970s–90s).
      - **Flat 100%:** Không đổ bóng (`no shadows`), không chuyển sắc (`no gradients`), không phát sáng (`no glow`), không hiệu ứng glitch/blur.

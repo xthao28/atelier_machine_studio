@@ -7,6 +7,9 @@
     "dev": "remotion studio src/index.ts",
     "setup:skills": "npx skills add Vincentwei1021/video-shotcraft -y && npx skills add wheresryan22/anatomy -y",
     "sync:xuna": "tsx scripts/sync-xuna-assets.ts",
+    "ds:build": "tsx scripts/build-design-system.ts",
+    "ds:sheet": "remotion still src/index.ts AmComponentSheet out/am-component-sheet.png --scale=0.5",
+    "render:reveal": "remotion render src/index.ts AmProjectRevealVertical out/am-project-reveal-9x16.mp4",
     "tts:generate": "tsx scripts/generate-tts.ts",
     "render:vertical": "remotion render src/index.ts XunaStoryVertical out/xuna-story-9x16.mp4",
     "render:horizontal": "remotion render src/index.ts XunaStoryHorizontal out/xuna-story-16x9.mp4",
@@ -47,4 +50,3 @@
     "typescript": "5.8.2"
   }
 }
-
