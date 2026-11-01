@@ -3,8 +3,10 @@ node_modules/
 .pnp
 .pnp.js
 
-# AI Agent Skills (installed on new machines via `npm run setup:skills` — see AI_ONBOARDING.md)
-.agents/
+# External AI Agent Skills (installed on new machines via `npm run setup:skills` — see AI_ONBOARDING.md)
+# Note: in-house skills like `.agents/skills/atelier-motion-doctrine/` ARE tracked in git.
+.agents/skills/video-shotcraft/
+.agents/skills/anatomy/
 
 # Remotion & Build outputs
 out/
