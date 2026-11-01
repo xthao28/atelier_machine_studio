@@ -61,6 +61,12 @@
 
 ## 4. Việc Cần Làm Ở Phiên Tiếp Theo (Checklist Ngày Mai)
 
-1. Cập nhật [`src/data/reel01Data.ts`](../src/data/reel01Data.ts) và [`src/compositions/Reel01TwinExperiment.tsx`](../src/compositions/Reel01TwinExperiment.tsx) theo kịch bản 5 Beat mới ở trên (vẫn giữ nguyên Style Thiết Kế Mới: nền kem ấm `#F4EFE4`, thẻ `#FAF8F3`, không lưới nền, phụ đề full-width `936px`, thuần Việt 100%).
-2. Cập nhật [`scripts/generate-reel01-tts.py`](../scripts/generate-reel01-tts.py) (với mẹo `tts_text: "Xu na"` -> `text: "Xuna"`) và chạy lại để sinh `reel01-vi.mp3`, `reel01-en.mp3` cùng [`src/data/reel01VoiceData.ts`](../src/data/reel01VoiceData.ts).
-3. Mở Remotion Studio kiểm tra trực quan 5 Beat mới và xuất file `.mp4`.
+> **⚠️ QUY TẮC QUAN TRỌNG — GIỮ NGUYÊN BẢN REEL ĐÃ LÀM:**
+> Toàn bộ bản Reel Thí Nghiệm Song Sinh 7 Ngày hiện tại ([`src/compositions/Reel01TwinExperiment.tsx`](../src/compositions/Reel01TwinExperiment.tsx), [`src/data/reel01Data.ts`](../src/data/reel01Data.ts), [`src/data/reel01VoiceData.ts`](../src/data/reel01VoiceData.ts), `reel01-vi.mp3`, `reel01-en.mp3`) **ĐƯỢC GIỮ NGUYÊN 100%** để dùng (và cập nhật thêm) cho **Video tiếp theo (Video #02 — Đi sâu vào Tiến hoá Tính cách & Cảm xúc)**.
+> Khi làm Video #01 (Master Capabilities Reveal), hãy **tạo thành composition riêng** (ví dụ `Reel01MasterReveal.tsx` / `reel01MasterData.ts`) chứ tuyệt đối không ghi đè mất bản `Reel01TwinExperiment` đã làm!
+
+1. Giữ nguyên [`src/compositions/Reel01TwinExperiment.tsx`](../src/compositions/Reel01TwinExperiment.tsx) cho Video tiếp theo (sẽ tinh chỉnh/bổ sung thêm khi làm tới tập đó).
+2. Tạo composition mới cho Video mở màn giới thiệu toàn bộ khả năng của Xuna (`Reel01MasterRevealVI` & `Reel01MasterRevealEN`) theo kịch bản 5 Beat ở trên (cùng Style Thiết Kế Mới: nền kem ấm `#F4EFE4`, thẻ `#FAF8F3`, không lưới nền, phụ đề full-width `936px`, thuần Việt 100%).
+3. Sinh file giọng đọc TTS `1.16x` riêng cho bản Master Reveal (với mẹo `tts_text: "Xu na"` -> `text: "Xuna"`).
+4. Mở Remotion Studio kiểm tra trực quan cả 2 Reel trong danh sách composition.
+
