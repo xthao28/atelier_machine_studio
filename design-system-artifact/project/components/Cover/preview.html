@@ -1,0 +1,26 @@
+<!-- @dsCard height=300 -->
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent}svg{display:block}
+.ground{fill:var(--surface,#F2EFE7)}.b-ink{fill:var(--on-surface,#242424)}.b-lime{fill:var(--lime,#D9F57A)}.b-lilac{fill:var(--lilac,#D9CBF6)}.b-orange{fill:var(--orange,#FF9B56)}.b-shade{fill:var(--paper-shade,#E4DFD1)}
+.plus-a{stroke:var(--surface,#F2EFE7);stroke-width:3;fill:none}.plus-b{stroke:var(--ink,#242424);stroke-width:3;fill:none}
+.name{fill:var(--on-surface,#242424);font:700 88px "Space Grotesk",var(--font-sans,system-ui),sans-serif;letter-spacing:-.03em}
+.tagline{fill:var(--muted,#4A4A46);font:400 14px "Space Grotesk",var(--font-sans,system-ui),sans-serif}</style></head><body>
+<svg width="960" height="300" viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg">
+<!-- derivation
+blocks: on-surface 192x240 (bleeds top), lime 144x144, orange 96x96, lilac 144x252 (bleeds right and bottom), paper-shade 192x60; all sides are multiples of space-5 (48) or half of it; radius-none (square).
+arrangement: a staggered stack from x=480: ink slab and shade strip left, lime over orange in the middle, a tall lilac slab bleeding off the right edge.
+pattern: plus grid at a 48 px pitch (space-5) cut into the ink and lilac blocks, because the system is technical and mono and its signature mark is the registration crosshair.
+steps/radii: space-5 pitch and block sides, radius-none; name 88px on two lines in the display face, tagline 14px in muted. -->
+<defs>
+<pattern id="pa" x="480" y="0" width="48" height="48" patternUnits="userSpaceOnUse"><path class="plus-a" d="M24 14V34M14 24H34"/></pattern>
+<pattern id="pb" x="816" y="0" width="48" height="48" patternUnits="userSpaceOnUse"><path class="plus-b" d="M24 14V34M14 24H34"/></pattern>
+</defs>
+<rect class="ground" width="960" height="300"/>
+<rect class="b-ink" x="480" y="0" width="192" height="240"/><rect x="480" y="0" width="192" height="240" fill="url(#pa)"/>
+<rect class="b-shade" x="480" y="240" width="192" height="60"/>
+<rect class="b-lime" x="672" y="0" width="144" height="144"/>
+<rect class="b-orange" x="672" y="144" width="96" height="96"/>
+<rect class="b-lilac" x="816" y="48" width="144" height="252"/><rect x="816" y="48" width="144" height="252" fill="url(#pb)"/>
+<text class="name" x="40" y="164">ATELIER</text>
+<text class="name" x="40" y="244">MACHINE</text>
+<text class="tagline" x="42" y="274">Making Machines Feel Alive.</text>
+</svg></body></html>

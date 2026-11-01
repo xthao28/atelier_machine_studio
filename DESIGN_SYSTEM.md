@@ -1,215 +1,396 @@
-# ATELIER MACHINE — Official Design System (Extracted from Artifact)
+# ATELIER MACHINE — Design System
 
-> **Studio Identity:** **ATELIER MACHINE** is an independent art and technology studio that makes curious machines, interactive objects and artificial lifeforms.
-> - **Tagline (EN):** `Making Machines Feel Alive.` (Always initial capitals + full stop)
-> - **Tagline (VI):** `Làm cho máy móc như có sự sống.` (Same size as its English line)
-> - **Core Philosophy:** Technology is a medium for artistic expression, not just a tool. Everything built from this system should read as a **retro-futurist publication** from a small studio that makes things with its hands: **art direction first, engineering craft second** — never a tech-news feed, a gaming brand, or a corporate AI company.
-
----
-
-## 1. Content Fundamentals & Editorial Voice
-
-- **Voice:** Curious, thoughtful, plainspoken — a maker explaining something they are excited about. Say what the machine does, then what it feels like.
-  - *Example:* `"A small physical creature that senses light, learns from every encounter, and slowly becomes someone."`
-- **Person & Tense:** `"We"` for the studio, `"you"` only to invite a swipe or a follow. Present tense for what a machine does, past tense for build steps.
-- **Casing:**
-  - **Sentence case** for headlines and body.
-  - **UPPER-CASE** only in `IBM Plex Mono` labels (`label`, `meta`), tags, and the wordmark (`ATELIER MACHINE`).
-- **Length Limits:**
-  - Headlines: **at most 8 words**; one idea per slide/scene. A question is a fine headline (`"What is Physical AI?"`).
-  - Body text: **at most 25 words** on a slide/scene. If a slide needs more than 25 words, split it.
-- **Honest Specifics:** Name real parts and values (`ESP32-S3`, `LDR + 10 kΩ`, `3.3 V`, `Q1.14`, `life0 / life1`). **No hype words** (`"revolutionary"`, `"next-gen"`), **no emoji**, **no exclamation marks**.
-- **Languages:** English first; Vietnamese in the same styles. Both `Space Grotesk` and `IBM Plex Mono` carry full Vietnamese diacritics.
-- **Naming Conventions:**
-  - `XUNA` is always upper-case.
-  - Projects: `PRJ—001` (with em-dash `—`)
-  - Experiments: `EXP—014`
-  - Build logs: `LOG—007`
-  - Object classification: `OBJ. CLASS A—3`
+> **ATELIER MACHINE** is an independent art and technology studio that makes curious machines, interactive objects and artificial lifeforms.
+> Tagline: **`Making Machines Feel Alive.`** (initial capitals, full stop) · VI: **`Làm cho máy móc như có sự sống.`** (same size as the English line)
+>
+> Technology is a medium for artistic expression, not just a tool. Everything built from this system reads as a **retro-futurist publication** from a small studio that makes things with its hands: **art direction first, engineering craft second**. Never a tech-news feed, a gaming brand or a corporate AI company.
 
 ---
 
-## 2. Visual Foundations
+## 0. Source of truth
 
-1. **Direction:** Contemporary retro-futurism — 1970s space-age graphics, 1980s–90s computing, vintage industrial design, and early digital interfaces, art-directed rather than decorated. Retro and futuristic at the same time.
-2. **Colour Proportions:**
-   - Ground is `paper` (**45%**) or `ink` (**30%**).
-   - Accents are `lime` (**technical**, ~10%), `lilac` (**concept**, ~10%), and `orange` (**artificial life / XUNA**, ~5%).
-   - Text is `ink` on light fields and `paper` on `ink`; secondary text is `muted`.
-   - **Rule:** Do not use all five colours in every post/scene, and do not introduce another dominant colour. Keep **one accent field per slide** and **one filled tag**. Build a light and a dark version by swapping `surface` and `on-surface` (accent fields stay the same colour).
-3. **Borders & Corners:**
-   - Outlines in `rule` at `stroke-line` (`3px`); dividers at `stroke-hair` (`2px`); the pixel frame at `stroke-heavy` (`6px`).
-   - Corners are **square** (`radius-none: 0`); **only tags are pills** (`radius-pill: 999px`) and **pins, step numbers, and status discs are round** (`radius-round: 50%`).
-4. **Depth:** **Flat. No shadows, no gradients, no glow.** Depth comes from the halftone fade, paper grain, and overlapping blocks.
-5. **Texture:**
-   - Paper grain on light slides (`--grain-opacity: 0.07`).
-   - Halftone on image frames and large panels (`--halftone-opacity: 0.35`, `--halftone-pitch: 14px`).
-   - Dot grid for diagrams (`--dot-pitch: 24px`).
-   - Technical grid at `--grid-pitch: 72px`.
-   - **Rule:** Textures are quiet and **never sit under body text**. At most **two textures per slide**.
-6. **Imagery & XUNA Character Rules:**
-   - Real hardware photography (bench, breadboard, printed parts), pixel art, and technical diagrams drawn from this system's graphic language. No stock, no generated robot imagery, no 3D renders of XUNA.
-   - **XUNA:** XUNA is an existing orange pixel-art character. Use the supplied reference art at **exact pixel multiples with nearest-neighbour scaling** (`image-rendering: pixelated`) inside `CharacterFrame` (`.am-char`). Never redraw, recolour, smooth, or re-proportion it.
-7. **Motion (Video & Covers):**
-   - **Cuts and 8-frame pixel steps** (`steps(8)` or discrete frame quantization), **never easing blurs or glitch effects**.
-8. **Avoid:** Generic cyberpunk, neon, heavy gradients, glitch, sci-fi HUDs, overly dark compositions, gaming graphics, excessive pixelation, clutter, and unexplained decoration.
+This document summarises the design system artifact. When the two disagree, the artifact wins.
+
+| What | Where | Edit? |
+| :--- | :--- | :--- |
+| Token values (colour, type, spacing, radius, stroke, texture) | [`design-system-artifact/project/tokens.json`](design-system-artifact/project/tokens.json) | Source |
+| Component classes (`.am-*`) | [`design-system-artifact/project/components/bundle.css`](design-system-artifact/project/components/bundle.css) | Source |
+| Component rules and live previews | [`design-system-artifact/project/components/<Name>/`](design-system-artifact/project/components/) (`README.md` + `preview.html`) | Source |
+| Brand, formats, graphic language, templates, guidelines | [`design-system-artifact/project/*.md`](design-system-artifact/project/) | Source |
+| CSS variables, theme blocks, type classes | [`src/styles/tokens.css`](src/styles/tokens.css) | Generated |
+| Component classes for Remotion | [`src/styles/atelier-machine.css`](src/styles/atelier-machine.css) | Generated |
+| Typed tokens and font list for inline styles | [`src/design-system/tokens.ts`](src/design-system/tokens.ts) | Generated |
+| React components, formats, motion, font loading | [`src/design-system/`](src/design-system/) (`index.ts` exports all) | Hand-written, ported from the previews |
+| Tailwind theme | [`tailwind.config.js`](tailwind.config.js) reads `tokens.json` directly | Do not add literals |
+
+Generated files are rebuilt with **`npm run ds:build`** ([`scripts/build-design-system.ts`](scripts/build-design-system.ts)) and must not be edited by hand. To change a value, update the artifact, re-export it into `design-system-artifact/`, then rebuild.
+
+**One rule for code:** colours, sizes, strokes and type come only from tokens or from `src/design-system/`. No hex literal, font size or border width is typed into a scene. Literal values copied from the artifact markup live only inside `src/design-system/components/`. The single exception is the `lcd` palette in Tailwind, used only for pixel art drawn inside XUNA's device screen.
 
 ---
 
-## 3. Color Tokens (`tokens.css`)
+## 1. Content and voice
 
-| Token | CSS Variable | Light · Paper (`[data-theme="light"]`) | Dark · Ink (`[data-theme="dark"]`) | Semantic Role |
-| :--- | :--- | :--- | :--- | :--- |
-| **Paper** | `--paper` | `#F2EFE7` | `#F2EFE7` | Warm archival paper ground (45% share) |
-| **Paper Shade** | `--paper-shade` | `#E4DFD1` | `#E4DFD1` | Secondary panel / image frame well |
-| **Paper Soft** | `--paper-soft` | `#B9B5AA` | `#B9B5AA` | Muted text on dark ink surfaces (7.5:1 contrast) |
-| **Ink** | `--ink` | `#242424` | `#242424` | Deep carbon ink ground / rule / primary text (30% share) |
-| **Ink Soft** | `--ink-soft` | `#4A4A46` | `#4A4A46` | Muted text on light paper surfaces (7.7:1 contrast) |
-| **Lime** | `--lime` | `#D9F57A` | `#D9F57A` | **Technical** accent (hardware, firmware, live status, ~10%) |
-| **Lilac** | `--lilac` | `#D9CBF6` | `#D9CBF6` | **Concept** accent (theory, architecture, code comparison, ~10%) |
-| **Orange** | `--orange` | `#FF9B56` | `#FF9B56` | **Artificial Life / XUNA** accent (character frame, active step, ~5%) |
-| **Grid Line** | `--grid-line` | `#D6D1C1` | `#3B3B38` | 72px technical module grid line |
-| **Surface** | `--surface` | `var(--paper)` (`#F2EFE7`) | `var(--ink)` (`#242424`) | Adaptive slide background |
-| **On-Surface** | `--on-surface` | `var(--ink)` (`#242424`) | `var(--paper)` (`#F2EFE7`) | Adaptive primary text (13.5:1 contrast) |
-| **Muted** | `--muted` | `var(--ink-soft)` (`#4A4A46`) | `var(--paper-soft)` (`#B9B5AA`) | Adaptive secondary text |
-| **Rule** | `--rule` | `var(--ink)` (`#242424`) | `var(--paper)` (`#F2EFE7`) | Adaptive 3px/2px border & line color |
+- **Voice.** Curious, thoughtful, plainspoken: a maker explaining something they are excited about. Say what the machine does, then what it feels like. *"A small physical creature that senses light, learns from every encounter, and slowly becomes someone."*
+- **Person and tense.** "We" for the studio, "you" only to invite a swipe or a follow. Present tense for what a machine does, past tense for build steps.
+- **Casing.** Sentence case for headlines and body. UPPER-CASE only in IBM Plex Mono labels (`label`, `meta`), tags and the wordmark.
+- **Length.** Headlines at most **8 words**, one idea per slide. Body text at most **25 words** per slide; if a slide needs more, split it. A question is a fine headline: "What is Physical AI?"
+- **Honest specifics.** Name real parts and values (`ESP32`, `LDR + 10 kΩ`, `3.3 V`) with non-breaking spaces before units. **No hype words** ("revolutionary", "next-gen"), **no emoji**, **no exclamation marks**.
+- **Languages.** English first; Vietnamese in the same styles and at the same size. Space Grotesk and IBM Plex Mono both carry Vietnamese diacritics; test every diacritic stack (ệ, ữ, ỳ) in headlines before publishing.
+- **Naming.** `XUNA` is always upper-case. IDs use an em dash and three digits: projects `PRJ—001`, experiments `EXP—014`, build logs `LOG—007`, figures `FIG—003` (sub-figures add a letter). Object classes: `OBJ. CLASS A—3` (A artificial life, B interactive object).
 
 ---
 
-## 4. Typography (`Space Grotesk` + `IBM Plex Mono`)
+## 2. Visual foundations
 
-All font files are extracted directly from the artifact into [`public/fonts/`](file:///Users/xthao28/atelier_machine_studio/public/fonts):
-- `SpaceGrotesk-400.ttf`, `SpaceGrotesk-500.ttf`, `SpaceGrotesk-600.ttf`, `SpaceGrotesk-700.ttf`
-- `IBMPlexMono-400.ttf`, `IBMPlexMono-500.ttf`
+- **Direction.** Contemporary retro-futurism: 1970s space-age graphics, 1980s–90s computing, vintage industrial design and early digital interfaces, art-directed rather than decorated.
+- **Colour.** Ground is `paper` (~45%) or `ink` (~30%). Accents by meaning: `lime` technical (~10%), `lilac` concept (~10%), `orange` artificial life and XUNA (~5%). The shares are a guideline; no post needs all five colours. Never introduce another dominant colour. **One accent field and one filled tag per slide.**
+- **Light and dark.** Build both versions of every layout by swapping `surface` and `on-surface`. Accent fields keep their colour.
+- **Type.** Space Grotesk for display, headlines and running text; IBM Plex Mono for IDs, labels, timestamps, coordinates and annotations. Display type is tight (−.03 to −.045em), mono labels are open (+.08em). **Never set a paragraph in mono.**
+- **Layout.** Modular grid, asymmetric but balanced. One dominant element per slide, at least a third of the slide quiet, and **one deliberate break of the grid**.
+- **Borders.** Outlines in `rule` at `stroke-line` (3 px), dividers at `stroke-hair` (2 px), the pixel frame at `stroke-heavy` (6 px). Corners are square. Only tags are pills; pins, step numbers and status discs are round.
+- **Depth.** Flat. **No shadows, no gradients, no glow.** Depth comes from the halftone fade, paper grain and overlapping blocks.
+- **Texture.** Paper grain on light slides, halftone on image frames and large panels, dot grid for diagrams, technical grid at 72 px. Textures are quiet and never sit under body text. **At most two textures per slide.**
+- **Imagery.** Real hardware photography (bench, breadboard, printed parts), pixel art, and technical diagrams drawn from the graphic language. No stock, no generated robot imagery, no 3D renders of XUNA.
+- **Motion (video covers).** Cuts and 8-frame pixel steps; never easing blurs or glitch effects.
+- **Avoid.** Generic cyberpunk, neon, heavy gradients, glitch, sci-fi HUDs, overly dark compositions, gaming graphics, excessive pixelation, clutter and unexplained decoration.
 
-### Type Scale (1080px-wide canvas pixels)
+### Logo and icons
 
-| Style Name | Class / Shorthand | Font Family | Weight | Size | Line Height | Letter Spacing | Transform & Rules |
+- There is **no logo mark** yet. The wordmark is the name `ATELIER MACHINE` in Space Grotesk 700, upper-case, +.14em. Do not draw or invent a mark.
+- There is **no icon set**. Use the twelve geometric symbols and the numbered pins (§7); each has one fixed meaning. No emoji, no glyph icons.
+
+### XUNA
+
+- XUNA is an existing orange pixel-art character. Use the supplied reference art at exact pixel multiples with nearest-neighbour scaling (`image-rendering: pixelated`) inside `CharacterFrame`. Never redraw, recolour, smooth or re-proportion it, and never turn it into a robot, animal or 3D character.
+- Until reference art is placed in a slot, keep the labelled placeholder (`XUNA reference art pending`). Never publish a placeholder.
+
+---
+
+## 3. Colour tokens
+
+Two themes: `light` (Light · Paper, the default on `:root`) and `dark` (Dark · Ink, `[data-theme="dark"]`).
+
+| Token | Light | Dark | Use |
+| :--- | :--- | :--- | :--- |
+| `paper` | `#F2EFE7` | `#F2EFE7` | Brand paper. Main backgrounds, large negative space; text on `ink` |
+| `ink` | `#242424` | `#242424` | Brand ink. Type on paper and accents, outlines, technical graphics, dark grounds |
+| `lime` | `#D9F57A` | `#D9F57A` | Technical accent: indicators, highlights, labels, project-number block. Text on it is `ink` |
+| `lilac` | `#D9CBF6` | `#D9CBF6` | Concept field: concept and experimental slides, comparison columns |
+| `orange` | `#FF9B56` | `#FF9B56` | Artificial-life accent: XUNA, character frames, warm highlights. Never body text on `paper` |
+| `paper-shade` | `#E4DFD1` | `#E4DFD1` | Quiet panel tint: image-frame ground, photo placeholders. Not for text |
+| `ink-soft` | `#4A4A46` | `#4A4A46` | Secondary text on `paper`, `paper-shade`, `lime`, `lilac`. Not on `orange`: use `ink` |
+| `paper-soft` | `#B9B5AA` | `#B9B5AA` | Secondary text on `ink` |
+| `grid-line` | `#D6D1C1` | `#3B3B38` | Technical grid lines only; never carries text or meaning |
+| `surface` | → `paper` | → `ink` | Slide ground in the current theme |
+| `on-surface` | → `ink` | → `paper` | Primary text, outlines and rules on `surface` |
+| `muted` | → `ink-soft` | → `paper-soft` | Secondary text and mono metadata on `surface` |
+| `rule` | → `ink` | → `paper` | Header, footer and section rules, frame borders, annotation lines |
+
+**Approved text pairs (WCAG 2):** `ink` on `paper` 13.5:1 · `ink` on `lime` 12.8:1 · `ink` on `lilac` 10.2:1 · `ink` on `orange` 7.4:1 · `paper` on `ink` 13.5:1 · `lime` on `ink` 12.8:1 · `ink-soft` on `paper` 7.7:1 (on `lilac` 5.9:1) · `paper-soft` on `ink` 7.6:1.
+**Never:** `orange` or `lilac` text on `paper` (1.8:1 / 1.3:1), `ink-soft` on `orange` (4.3:1).
+
+---
+
+## 4. Typography
+
+Fonts are self-hosted from [`public/fonts/`](public/fonts/): Space Grotesk 400/500/600/700, IBM Plex Mono 400/500. Other fonts in that folder (Be Vietnam Pro, JetBrains Mono, Anton) are **not part of the system**; do not use them on brand surfaces.
+
+Sizes are canvas pixels on a 1080 px-wide post.
+
+| Style | Token class | `.am` shorthand | Family | Weight | Size / line | Tracking | Use |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Display XL** | `.display-xl` / `.am-xl` | `Space Grotesk` | `700` | `220px` | `0.88` | `-0.045em` | Sentence case |
-| **Display** | `.display` / `.am-d` | `Space Grotesk` | `700` | `144px` | `0.92` | `-0.04em` | Sentence case |
-| **H1** | `.h1` / `.am-h1` | `Space Grotesk` | `700` | `96px` | `0.98` | `-0.03em` | Sentence case (max 8 words) |
-| **H2** | `.h2` / `.am-h2` | `Space Grotesk` | `600` | `64px` | `1.04` | `-0.02em` | Sentence case |
-| **H3** | `.h3` / `.am-h3` | `Space Grotesk` | `600` | `44px` | `1.1` | `-0.01em` | Sentence case |
-| **Body Large** | `.body-lg` / `.am-bl` | `Space Grotesk` | `500` | `36px` | `1.35` | `0` | Sentence case (max 25 words) |
-| **Body** | `.body` / `.am-b` | `Space Grotesk` | `400` | `32px` | `1.4` | `0` | Minimum on 1080px canvas: `28px` |
-| **Caption** | `.caption` / `.am-cap` | `Space Grotesk` | `400` | `26px` | `1.35` | `0` | Minimum on 1080px canvas: `24px` |
-| **Label** | `.label` / `.am-lab` | `IBM Plex Mono` | `500` | `22px` | `1.2` | `+0.08em` | **UPPER-CASE** (min `22px`) |
-| **Meta** | `.meta` / `.am-meta` | `IBM Plex Mono` | `400` | `20px` | `1.35` | `+0.04em` | Coordinates, timestamps (min `20px`) |
-| **Data** | `.data` / `.am-data` | `IBM Plex Mono` | `500` | `28px` | `1.3` | `0` | Numeric readouts, sensor values |
-| **Wordmark** | `.am-wordmark` | `Space Grotesk` | `700` | `28px` | `1.0` | `+0.14em` | **UPPER-CASE**: `ATELIER MACHINE` |
+| Display XL | `.display-xl` | `.am-xl` | Space Grotesk | 700 | 220 / .88 | −.045em | Single-word project title on covers (XUNA). One per post |
+| Display | `.display` | `.am-d` | Space Grotesk | 700 | 144 / .92 | −.04em | Question and statement covers, quotes |
+| H1 | `.h1` | `.am-h1` | Space Grotesk | 700 | 96 / .98 | −.03em | Slide headlines, build log titles |
+| H2 | `.h2` | `.am-h2` | Space Grotesk | 600 | 64 / 1.04 | −.02em | Subtitles, section statements |
+| H3 | `.h3` | `.am-h3` | Space Grotesk | 600 | 44 / 1.1 | −.01em | Section headings, step titles, quiet CTAs |
+| Body large | `.body-lg` | `.am-bl` | Space Grotesk | 500 | 36 / 1.35 | 0 | Lead paragraphs on covers |
+| Body | `.body` | `.am-b` | Space Grotesk | 400 | 32 / 1.4 | 0 | Running text, left-aligned |
+| Caption | `.caption` | `.am-cap` | Space Grotesk | 400 | 26 / 1.35 | 0 | Captions, step descriptions, in `muted` |
+| Label | `.label` | `.am-lab` | IBM Plex Mono | 500 | 22 / 1.2 | +.08em | Upper-case labels, tags, IDs, header and footer text |
+| Meta | `.meta` | `.am-meta` | IBM Plex Mono | 400 | 20 / 1.35 | +.04em | Metadata, coordinates, annotations, in `muted`. Never sentences |
+| Data | `.data` | `.am-data` | IBM Plex Mono | 500 | 28 / 1.3 | 0 | Values in technical labels and readouts |
+| Wordmark | — | `.am-wordmark` | Space Grotesk | 700 | 28 / 1 | +.14em | `ATELIER MACHINE`, upper-case |
 
-> **Rule:** Never set a paragraph in mono. Left-align headlines, body text, and annotations. Centre only a single short line (a quote attribution, a coordinate under a target).
-
----
-
-## 5. Social Formats, Grids & Safe Zones (`formats.md`)
-
-Design every post/video on a **1080px wide canvas**.
-
-### A. Instagram Reels, TikTok & Shorts · `9:16` (`1080 × 1920`) — `.am-slide.tall`
-- **Use for:** Video covers, project demonstrations, build process, experiment videos, and short-form stories.
-- **Conservative Safe Box:**
-  - `x`: **`72px` to `920px`** (Left margin `72px`, Right safe zone `--safe-right-vertical: 160px` = width `848px`)
-  - `y`: **`250px` to `1470px`** (Top safe zone `--safe-top-vertical: 250px`, Bottom safe zone `--safe-bottom-vertical: 450px` = height `1220px`)
-- **Grid:** **4 columns**, `--gutter: 24px`.
-- **Bands:**
-  - `BrandHeader` sits at **`y = 270`** inside the safe box.
-  - `BrandFooter` sits at **`y = 1400`** inside the safe box.
-  - Profile 3:4 crop safety: keep titles between `y = 240` and `y = 1680`, preferably inside the safe box.
-- **Rule:** Keep every word and key visual inside the safe box. Backgrounds, textures, and blocks may bleed to the edges.
-
-### B. Instagram Carousel · `4:5` (`1080 × 1350`) — `.am-slide`
-- **Margin:** `--margin-post: 72px` on all sides; inner area `936 × 1206`.
-- **Grid:** **6 columns**, column `136px`, `--gutter: 24px`.
-- **Bands:** Header `y = 72–124` (`BrandHeader`), Footer `y = 1222–1278` (`BrandFooter`). Content lives between `y = 150` and `y = 1190`.
-
-### C. Square · `1:1` (`1080 × 1080`) — `.am-slide.sq`
-- **Margin:** `72px`; 6 columns as 4:5. Header `y = 72`, Footer `y = 952`.
-
-### D. Spacing Scale
-- `--space-1: 8px` · `--space-2: 16px` · `--space-3: 24px` · `--space-4: 32px` · `--space-5: 48px` · `--space-6: 72px` · `--space-7: 96px`
-- Every gap, padding, and offset is one of these values. Align to the `72px` technical grid; text baselines to `8px`.
+- **Minimum sizes on 1080 px:** body 28, caption 24, label 22, metadata 20.
+- The `.am-*` shorthands live inside an `.am` scope; `.am-cap` and `.am-meta` set their own `muted` colour, `.am-lab` upper-cases itself. The token classes (`.display-xl`…`.data`) set only the font.
+- Left-align headlines, body text and annotations. Centre only a single short line (a quote attribution, a coordinate under a target).
 
 ---
 
-## 6. The 15 Graphic Language Elements (`graphic-language.md`)
+## 5. Spacing, radius, stroke and texture tokens
 
-Each element has a defined purpose; **if an element has no job on a slide, remove it**.
-- **Limits per slide/scene:** At most **1 targeting element**, **4 annotations**, and **2 textures** per slide.
-- **Primitive rules:** Draw everything in `rule` colour (`3px` lines) or one accent fill; never recolour a symbol to match the slide. Arrows have **open mitered heads, never filled**.
+| Group | Token | Value | Use |
+| :--- | :--- | :--- | :--- |
+| Spacing | `space-1` | 8 px | Base unit. Gaps inside tags, status indicators, icon-to-text |
+| | `space-2` | 16 px | Label to value, small stacks |
+| | `space-3` | 24 px | Column gutter, gap between steps |
+| | `space-4` | 32 px | Padding inside panels and frames; gap between text blocks |
+| | `space-5` | 48 px | Heading to its content block |
+| | `space-6` | 72 px | Outer margin, technical grid module |
+| | `space-7` | 96 px | Large separation between sections |
+| | `margin-post` | 72 px | Margin on 4:5 and 1:1, and the sides of 9:16 |
+| | `gutter` | 24 px | Gutter on the 6-column (4:5, 1:1) and 4-column (9:16) grids |
+| | `safe-top-vertical` | 250 px | 9:16: text and key visuals below this line |
+| | `safe-bottom-vertical` | 450 px | 9:16: text and key visuals above this distance from the bottom |
+| | `safe-right-vertical` | 160 px | 9:16: text clear of the right-hand action rail |
+| Radius | `radius-none` | 0 | Default: frames, panels, blocks, labels, IDs, images |
+| | `radius-pill` | 999 px | Category tags only |
+| | `radius-round` | 50% | Pins, step numbers, status discs, targeting rings |
+| Stroke | `stroke-hair` | 2 px | Grid lines, row dividers, secondary rings |
+| | `stroke-line` | 3 px | Default outline: rules, frames, tags, annotation lines, crosshairs |
+| | `stroke-heavy` | 6 px | Pixel-art character frame and format outlines |
+| Texture | `grain-opacity` | 0.07 | Paper grain on light slides (multiply); 0.06 screen on dark |
+| | `halftone-opacity` | 0.35 | Halftone fade on image frames and panels |
+| | `halftone-pitch` | 14 px | Halftone dot spacing |
+| | `dot-pitch` | 24 px | Dot grid for diagrams and Pixel Life backgrounds |
+| | `grid-pitch` | 72 px | Technical grid module, equal to the outer margin |
 
-1. **Technical grid overlay** (`Textures`, `Registration`): `72px` module in `grid-line` (`.am-gridbg`); shows the structure of a slide.
-2. **Crosshair marker** (`Registration`): `.am-x` (`24×24px`, `3px` stroke); marks a corner or a point; four sizes.
+Every gap, padding and offset is one of the spacing values. Align blocks to the 72 px technical grid and text baselines to 8 px.
+
+---
+
+## 6. Social formats
+
+Design on a 1080 px-wide canvas. All values are canvas pixels.
+
+| Format | Canvas | Class | Margin and grid | Header / footer | Use |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Carousel 4:5 | 1080 × 1350 | `.am-slide` | 72 all sides, inner 936 × 1206; 6 columns of 136, gutter 24 | Header y 72–124, footer y 1222–1278; content y 150–1190 | Project introductions, explainers, hardware breakdowns, updates |
+| Reels / TikTok 9:16 | 1080 × 1920 | `.am-slide.tall` | Safe box x 72–920, y 250–1470; 4 columns, gutter 24 | Header y 270, footer y 1400, inside the safe box | Video covers, demos, build process, experiments, stories |
+| Square 1:1 | 1080 × 1080 | `.am-slide.sq` | 72; 6 columns as 4:5 | Header y 72, footer y 952 | Announcements, profile graphics, one title + one image, or a quote |
+
+- **4:5:** the profile grid crops to 3:4, so keep titles and key marks at least 34 px from the left and right edges. Slide 1 is the cover with the title, slides 2 to n−1 carry one idea each, the last slide is the call to action.
+- **9:16:** every word and key visual stays inside the safe box; backgrounds, textures and blocks may bleed. Covers crop to 3:4 on profile grids: keep the title between y 240 and y 1680. No page numbering on covers.
+- `.am-slide` only sets the canvas size. Place bands and blocks with `.am-abs` at the coordinates above.
+- Numbers and mono values align left in their column; right-align only counters and right-hand context labels in the header and footer.
+
+---
+
+## 7. Graphic language
+
+Each element has a defined job; if it has no job on a slide, remove it.
+
+1. **Technical grid overlay** (`Textures`, `Registration`): 72 px module in `grid-line`; shows the structure of a slide.
+2. **Crosshair marker** (`Registration`): marks a corner or a point; four sizes.
 3. **Coordinate label** (`Registration`): `X 12.40 · Y 08.75` in `meta`; locates an object.
-4. **Circular targeting element** (`Registration`): Concentric rings and 30° ticks; isolates one subject.
-5. **Retro computer interface frame** (`Frames`): Window with title bar for code and screens (`.am-code`).
-6. **Experiment identification tag** (`ExperimentId`, `Labels`): `.am-expid` — e.g. `<b>EXP</b><span>014</span>` or `EXP—014`.
-7. **Technical annotation line** (`TechnicalAnnotation`, `Annotations`): `.am-note` / SVG `3px` line with `r=8` dot or `16×16` square or open arrow tying a mono label (`ESP32-S3`, `Light sensor`, `Pixel display`) to one part of an image.
-8. **Directional arrow** (`Annotations`): `3px` or `6px` stroke, or `stroke-dasharray="10 8"`, with open mitered head (`Direction · Flow · Return`).
-9. **Halftone pattern** (`Textures`): `.am-halftone` (`14px` pitch, `0.35` opacity); fades photos and panels into the paper.
-10. **Paper grain** (`Textures`): `.am-grain` (`0.07` opacity); warm print surface on light slides.
-11. **Pixel-art frame** (`CharacterFrame`, `Frames`): `.am-char` — `8px` stepped pixel corners (`24px` 3-step corner notch) with `var(--fg)` outer border and `var(--c-orange)` inner field + `32×32px` pixel grid.
-12. **Industrial information panel** (`Frames`, `MetadataBlock`): `.am-meta-block` — `220px 1fr` specification rows with `3px` top rule and `2px` row dividers.
-13. **Geometric symbol** (`Symbols`): Twelve geometric glyphs with one fixed meaning each (no emoji, no icon sets).
+4. **Circular targeting element** (`Registration`): rings and 30° ticks; isolates one subject.
+5. **Retro computer interface frame** (`Frames`): window with a title bar for code and screens.
+6. **Experiment identification tag** (`ExperimentId`, `Labels`): `EXP—014`.
+7. **Technical annotation line** (`TechnicalAnnotation`, `Annotations`): ties a label to a part.
+8. **Directional arrow** (`Annotations`): flow, return, emphasis; open head.
+9. **Halftone pattern** (`Textures`): fades photos and panels into the paper.
+10. **Paper grain** (`Textures`): warm print surface on light slides.
+11. **Pixel-art frame** (`CharacterFrame`, `Frames`): stepped corners for characters.
+12. **Industrial information panel** (`Frames`, `MetadataBlock`): rows of specification.
+13. **Geometric symbol** (`Symbols`): twelve glyphs with one meaning each.
 14. **Object classification label** (`Labels`): `OBJ. CLASS A—3`.
-15. **Numbered project indicator** (`ProjectNumber`, `Labels`): `.am-prj` (`001`, `002`, `003` in `96px` Space Grotesk Bold + `.am-lab`).
+15. **Numbered project indicator** (`ProjectNumber`, `Labels`): `001`, `002`, `003`.
+
+**Rules**
+
+- Draw everything in `rule` colour or one accent fill; never recolour a symbol to match the slide.
+- Per slide: at most **one targeting element, four annotations and two textures**.
+- Graphics frame content; they never replace it. Keep body text on a clean area.
+- Draw new elements from the same primitives: 3 px lines, squares, discs, plus marks and 8 px steps. Arrows have open heads, never filled.
+
+**The twelve symbols:** disc = live · square = object · triangle = testing · half disc = input · plus = target · diamond = decision · ring = loop · bar = progress · pixel cluster = pixel life · arc = range · steps = evolution · bracket = focus. Fill only with `lime`, `lilac` or `orange`; outline in `rule`.
 
 ---
 
-## 7. The 6 Template Families (`templates.md`)
+## 8. Components
 
-| # | Family | Component Name | Purpose | Colour Lead |
+29 components, each with rules in `design-system-artifact/project/components/<Name>/README.md` and a live `preview.html`. Wrap any component in an `.am` scope; set the scope ground with `.am.is-dark`, `.is-lilac`, `.is-lime`, `.is-orange` or `.is-shade`.
+
+### Brand bands
+
+| Component | Class | Rules |
+| :--- | :--- | :--- |
+| `BrandHeader` | `.am-header` > `.am-wordmark` + `.am-lab` | x 72, y 72, 936 wide (4:5, 1:1); y 270 on 9:16. Right label states template and number (`PRJ—001 · …`, `Build log · 07`). 3 px rule under it. No logo mark |
+| `BrandFooter` | `.am-footer` | x 72, y 1222 on 4:5. Tagline `Making Machines Feel Alive.` in label style; `Swipe` on slides 1 to n−1, `Follow` on the last. Single images drop the page number. 3 px rule on top |
+| `PageNumbering` | `.am-page` (`<b>02</b> / 05`) | Two digits, current in 500, total in 400. Centre of the footer on 4:5 and 1:1; omitted on 9:16 covers. Total counts the cover |
+| `CarouselNav` | `.am-nav` > `.dots` / `.ar` | Bottom-right of the footer. Arrow 64 px, 3 px, open head. Last slide has no forward arrow. Dots only where there is no page numbering |
+
+### Identity and labels
+
+| Component | Class | Rules |
+| :--- | :--- | :--- |
+| `CategoryTag` | `.am-tag` (+ `.f-lime` / `.f-lilac` / `.f-orange` / `.f-ink` / `.f-paper`) | Outline by default; at most one filled tag per slide, filled by meaning (`lilac` concept, `lime` technical, `orange` artificial life, `ink` hardware). The only pills in the system |
+| `ExperimentId` | `.am-expid` (`<b>EXP</b><span>014</span>`) | Prefixes `EXP`, `LOG`, `FIG`; three digits. One per slide, never two prefixes in one tag. Mono 500, 26 px; inverts with the surface |
+| `ProjectNumber` | `.am-prj` > `strong` + `.am-lab` | Project Reveal covers and the lime block. Numbers never repeat or recolour. Numeral at least 96 px |
+| `Labels` | — | Experiment tags, object classes (A—3 artificial life, B—1 interactive object), project indicators. Future project numbers in `muted`, never blank |
+| `TechnicalLabel` | `.am-lbl` > `.k` + `.v` | Key mono 400 20 `muted`, value mono 500 28. Two to four in a row, unboxed. Real units with non-breaking spaces |
+| `StatusIndicator` | `.am-status.is-live` / `.is-test` / `.is-done` / `.is-idle` | Shape + word, never colour alone: disc live (`lime`), triangle testing (`orange`), square done (`on-surface`), dashed square upcoming |
+
+### Content blocks
+
+| Component | Class | Rules |
+| :--- | :--- | :--- |
+| `SectionHeading` | `.am-sec` > number + `.am-h3` | Directly under the header band (y 170) on inner slides; never on covers. Numbers restart at 01 per post |
+| `NumberedStep` | `.am-step` > `.n` `.t` `.d` | 56 px disc; title 36/600, description 28/400 `muted`, one sentence. Three to four per slide |
+| `MetadataBlock` | `.am-meta-block` > `.k` `.v` | Keys mono 20 caps `muted`, values Space Grotesk 500 30. 3 px top rule, 2 px row rules. Three to five rows; status last |
+| `QuoteBlock` | `.am-quote` > `.mk` `.qt` `.by` | Display 700, 96–144 px, two to four lines; hanging opening mark. Highlight at most one phrase (`lime` on dark, `orange` on light). Leave at least 40% of the slide empty |
+| `ProgressIndicator` | `.am-prog` > `.bar` > `.seg.on` / `.seg.now` | One 24 px segment per stage, 8 px gap. Done `lime`, current `orange`, upcoming outline. Always a mono count label |
+
+### Frames and media
+
+| Component | Class | Rules |
+| :--- | :--- | :--- |
+| `Frames` | `.am-code` and the frames below | Square; border `stroke-line`, or `stroke-heavy` for the pixel frame. Computer frame for code and screens, panel for specs, image frame for photos. Never nest more than one frame |
+| `ImageFrame` | `.am-img` > `.ph` / `.cap` | Real photos only, on `paper-shade` with the halftone fade, no filters. Caption bar: figure number left, view or scale right. Crosshairs 24 px outside the corners |
+| `CharacterFrame` | `.am-char` > `.px-out` `.px-in` `.pxg` `.ph` | 8 px stepped corners, `orange` field for XUNA. Exact pixel multiples, nearest-neighbour. Placeholder until art is supplied |
+
+### Graphic elements
+
+| Component | Class | Rules |
+| :--- | :--- | :--- |
+| `TechnicalAnnotation` | `.am-note` > `.dot` `.ln` `.tx` | Dot ends on a surface, square on an edge, dashed for optional or hidden parts. 3 px, horizontal or vertical first, 45° only when needed; lines never cross |
+| `Annotations` | SVG in `.am-layer`, labels `.am-svgt` | Annotation lines, open-headed arrows, dimension lines, numbered pins. At most four per image |
+| `Registration` | `.am-x` (crosshair) | Grid, crosshairs, coordinates, targets: each with a job. `rule` colour, 3 or 2 px. One target per slide. Coordinates are sample data, never a real person's location |
+| `Symbols` | SVG | The twelve symbols in §7 |
+| `Textures` | `.am-gridbg` `.am-halftone` `.am-dots` `.am-hatch` `.am-grain` | Use the opacity tokens, never stronger. At most two per slide; text areas texture-free apart from grain. Hatch only for unsafe or restricted zones |
+
+### Boards (reference only)
+
+`ColorBoard` (colours, shares, contrast), `TypeBoard` (all styles with Vietnamese coverage), `GridBoard` (grids, margins, safe areas) document the foundations; they are not used in posts. `Cover` is the artifact's own cover preview.
+
+### Template components
+
+`TemplateProjectReveal`, `TemplateBuildLog`, `TemplateTechExplainer`; see §9.
+
+---
+
+## 9. Templates
+
+Six families share one header, footer, grid and component set. **Three are designed; three are not yet** and have no components: do not invent them.
+
+| Family | Component | Purpose | Colour lead | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **01** | **Project Reveal** | `TemplateProjectReveal` | Introduce a new project (`XUNA`) | `paper` + `orange` frame, `lime` number |
-| **02** | **Build Log** | `TemplateBuildLog` | Document the making (`M01` → `M05a` → `PE-4`) | `paper` + `lime` stage block, `lilac` code slide |
-| **03** | **Tech Explainer** | `TemplateTechExplainer` | Explain a concept (`LifeCore`, `Affect`, `EvidenceLedger`) | `paper` + `lime` glyph, `lilac` comparison |
-| **04** | **Experiment Report** | `TemplateExperimentReport` | Show an experiment (`UCB`, `Brier score`, `46 native tests`) | `paper` + `lime` status |
-| **05** | **Concept / Quote** | `TemplateConceptQuote` | Philosophy, one idea (*"Every experience shapes who XUNA becomes."*) | `ink` and `paper`, light and dark |
-| **06** | **Pixel Life** | `TemplatePixelLife` | XUNA personality and evolution (`Temperament.h`, expressions) | `lilac` or `orange` ground |
+| 01 Project Reveal | `TemplateProjectReveal` | Introduce a new project | `paper` + `orange` frame, `lime` number | Designed |
+| 02 Build Log | `TemplateBuildLog` | Document the making | `paper` + `lime` stage block, `lilac` code slide | Designed |
+| 03 Tech Explainer | `TemplateTechExplainer` | Explain a concept | `paper` + `lime` glyph, `lilac` comparison | Designed |
+| 04 Experiment Report | — | Show an experiment | `paper` + `lime` status | Next |
+| 05 Concept / Quote | — | Philosophy, one idea | `ink` and `paper`, light and dark | Next |
+| 06 Pixel Life | — | XUNA personality and evolution | `lilac` or `orange` ground | Next, needs XUNA reference art |
 
-### Rules Applying to Every Template Family
-1. **Slide/Scene 1** is a cover with one dominant element. Inner scenes open with a `SectionHeading` (`.am-sec`).
-2. Each post/video has one lead background colour plus at most one dark scene per sequence. Do not repeat the same composition on consecutive scenes.
-3. Every scene carries `BrandHeader` (`.am-header`) and `BrandFooter` (`.am-footer`); page/scene numbering (`<b>02</b> / 06`) counts the cover.
-4. Pair every status colour with a **shape** and a **word** in `.am-status`:
-   - `.is-live`: **Circle** (`border-radius: 50%`) in `lime`
-   - `.is-test`: **Triangle** (`clip-path: polygon(50% 0, 100% 100%, 0 100%)`) in `orange`
-   - `.is-done`: **Square** filled in `fg`
-   - `.is-idle`: **Dashed Square** (`border-style: dashed`)
+**01 Project Reveal.** Cover: one `display-xl` word in `on-surface`, `h2` subtitle, `ProjectNumber` block, one-sentence description, up to three `CategoryTag`s and the `CharacterFrame`. Inner: Concept on `lilac` (statement `h1`, lead `body-lg`, `MetadataBlock`); Anatomy (frame with four numbered `TechnicalAnnotation`s and a `NumberedStep` key). 4–6 slides; the last ends with `Follow the build.` The dark variant keeps the frame orange.
+
+**02 Build Log.** Cover: `lime` stage block (`label` + 200 px numeral) beside an `h1` title, `ExperimentId` and tag, then a real photo in `ImageFrame` with numbered pins and a three-value `TechnicalLabel` row. Inner: Components (photo + four `NumberedStep`s), Firmware (code in `.am-code`, at most 10 real, compilable lines at 26 px; three steps), Progress (six stage rows with `StatusIndicator` and a `ProgressIndicator`). End with the next log's title as the call to action.
+
+**03 Tech Explainer.** Cover: question in `display`, one oversized `lime` glyph (the question mark) clipped by the right edge, a two-line `body-lg` answer, nothing else. Diagram: three nodes (`lime`, `lilac`, `orange`) with arrows and a dashed return path, then three one-sentence `NumberedStep`s. Comparison: two columns, mono row keys, the subject in `lime`. Takeaway on `ink` with one `lime` phrase and the next question.
+
+**Every family**
+
+- Slide 1 is a cover with one dominant element; inner slides open with a `SectionHeading`.
+- One lead background colour per post plus at most one dark slide. Never repeat a composition on consecutive slides.
+- `BrandHeader` and `BrandFooter` on every slide; page numbering counts the cover.
+- Light and dark swap `surface` and `on-surface`; accent fields keep their colour.
+- Replace every placeholder (photo, XUNA) with real material before publishing.
 
 ---
 
-## 8. Complete 29-Component Inventory (from Artifact)
+## 10. Usage guidelines
 
-All CSS implementations are saved in [`src/styles/atelier-machine.css`](file:///Users/xthao28/atelier_machine_studio/src/styles/atelier-machine.css):
+**Hierarchy.** 1. The headline or one dominant graphic. 2. Technical identity (project number, experiment ID, tags). 3. Body text and annotations.
 
-1. `Annotations` — SVG `3px` annotation lines (dot/square/open-arrow end), directional arrows (`3px`/`6px`/dashed), dimension lines (`936 PX`, `72 PX`), and numbered pins (`r=22` circle with `IBM Plex Mono` index).
-2. `BrandHeader` (`.am-header`) — `<span class="am-wordmark">Atelier Machine</span>` left + `<span class="am-lab">PRJ—001 · Artificial life</span>` right, `3px` bottom border.
-3. `BrandFooter` (`.am-footer`) — `<span class="am-lab">Making Machines Feel Alive.</span>` left + `<span class="am-page"><b>02</b> / 05</span>` center + `<span class="am-nav">Swipe <span class="ar"></span></span>` right, `3px` top border.
-4. `CarouselNav` (`.am-nav`) — Mono label + `.dots` or `.ar` (`64px` shaft + `16px` mitered open arrowhead).
-5. `CategoryTag` (`.am-tag`) — Only pill-shaped element (`border-radius: 999px`, `3px` border, `.f-lime`, `.f-lilac`, `.f-orange`, `.f-ink`, `.f-paper`).
-6. `CharacterFrame` (`.am-char`) — Stepped `8px` pixel-corner frame (`24px` corner cut) with `--c-orange` background and `32px` pixel grid for XUNA sprites.
-7. `ColorBoard` — Swatch & contrast verification board.
-8. `ExperimentId` (`.am-expid`) — Split box `<b>EXP</b><span>014</span>` with `3px` border.
-9. `Frames` — Retro computer window frame, `.am-code` (`#242424` ground, `--c-lime` keywords, `--c-orange` numbers, `--c-psoft` comments).
-10. `GridBoard` — 6-column (`4:5`) and 4-column (`9:16`) modular grid overlay.
-11. `ImageFrame` (`.am-img`) — `3px` bordered frame on `--c-shade` with halftone edge fade and bottom mono `.cap` bar.
-12. `Labels` — Object classification & specification labels.
-13. `MetadataBlock` (`.am-meta-block`) — 2-column (`220px 1fr`) industrial specification table (`3px` top rule, `2px` hair row dividers).
-14. `NumberedStep` (`.am-step`) — `56×56px` round disc `.n` + `36px` title `.t` + `28px` muted description `.d`.
-15. `PageNumbering` (`.am-page`) — `<b>02</b> / 05` in `22px` `IBM Plex Mono`.
-16. `ProgressIndicator` (`.am-prog`) — Segmented `24px`-tall bar with `3px` borders (`.seg.on` in `lime`, `.seg.now` in `orange`).
-17. `ProjectNumber` (`.am-prj`) — `96px` Space Grotesk Bold number + `.am-lab` subtitle.
-18. `QuoteBlock` (`.am-quote`) — `220px` quotation mark `.mk` + `96px` quote `.qt` + mono attribution `.by`.
-19. `Registration` (`.am-x`) — Crosshair markers, coordinate readouts (`X 12.40 · Y 08.75`), circular targeting rings.
-20. `SectionHeading` (`.am-sec`) — Baseline-aligned index/label + `.am-h3` (`44px`) + `3px` bottom border.
-21. `StatusIndicator` (`.am-status`) — Shape + color + mono label (`.is-live` circle, `.is-test` triangle, `.is-done` solid square, `.is-idle` dashed square).
-22. `Symbols` — 12 geometric glyphs in `3px` stroke.
-23. `TechnicalAnnotation` (`.am-note`) — `16px` dot + `96px` line (`3px`) + mono text.
-24. `TechnicalLabel` (`.am-lbl`) — Stacked mono key `.k` (`20px` muted) + mono value `.v` (`28px`).
-25. `TemplateBuildLog` — Family 02 layout (`paper` + `lime` stage block + `lilac` code slide).
-26. `TemplateProjectReveal` — Family 01 layout (`paper` + `orange` character frame + `lime` project number).
-27. `TemplateTechExplainer` — Family 03 layout (`paper` + `lime` glyph + `lilac` comparison).
-28. `Textures` — `.am-gridbg`, `.am-halftone`, `.am-dots`, `.am-hatch`, `.am-grain`.
-29. `TypeBoard` — Complete specimen sheet for Display, Text, and Technical styles.
+**Do**
+
+- Use real hardware photographs and the supplied XUNA reference art.
+- Let negative space work; leave at least a third of a slide quiet.
+- Pair every status colour with a shape and a word.
+- Keep one accent field and one filled tag per slide.
+- Check each headline in Vietnamese before publishing a bilingual post.
+
+**Don't**
+
+- Use gradients, glow, shadows, neon or glitch effects.
+- Set paragraphs in mono or decorative fonts, or go below the minimum sizes.
+- Place text on halftone, grain-heavy areas or a photo without a `paper` or `ink` plate.
+- Redraw XUNA, invent a logo mark, or add stock or generated robot imagery.
+- Add a graphic element without a job from §7.
+
+**Image treatment.** Photos: natural colour, square-on or a clear three-quarter angle, plain bench, in `ImageFrame`. Pixel art: whole-multiple nearest-neighbour scaling on a flat field, dot grid at most. Diagrams: 3 px lines, nodes in `lime`, `lilac`, `orange`, labels in `label`.
+
+**Checklist before publishing**
+
+- [ ] Header and footer on every slide, same positions on every post
+- [ ] Colours only from tokens; type only from the styles
+- [ ] Light and dark versions both checked at phone size
+- [ ] Headline ≤ 8 words, body ≤ 25 words per slide, no emoji or exclamation marks
+- [ ] ≤ 1 target, ≤ 4 annotations, ≤ 2 textures, 1 accent field, 1 filled tag per slide
+- [ ] No placeholder left (photo, XUNA)
+
+---
+
+## 11. Using the system in code
+
+[`src/Root.tsx`](src/Root.tsx) already imports `styles/globals.css` and calls `loadAmFonts()`, which loads the six font files from `public/fonts/` with `staticFile()` and holds the render until they are ready. Import everything else from [`src/design-system`](src/design-system/index.ts).
+
+### Components (React, ported 1:1 from the artifact previews)
+
+| Group | Exports |
+| :--- | :--- |
+| Canvas | `Slide` (format, ground, `grid`, `grain`), `AmScope`, `Abs`, `SvgLayer`, `Texture` |
+| Brand bands | `BrandHeader`, `BrandFooter`, `PageNumbering`, `CarouselNav`, `TAGLINE`, `TAGLINE_VI` |
+| Identity | `CategoryTag`, `ExperimentId`, `ProjectNumber`, `ProjectNumberBlock`, `ObjectClass`, `TechnicalLabel`, `TechnicalLabelRow`, `StatusIndicator` |
+| Content | `SectionHeading`, `NumberedStep`, `NumberedSteps`, `MetadataBlock`, `QuoteBlock`, `QuoteHighlight`, `ProgressIndicator` |
+| Frames | `CharacterFrame`, `PixelSprite`, `XUNA_SPRITE`, `ImageFrame`, `CodeFrame` (+ `CodeKeyword`, `CodeNumber`, `CodeComment`), `ComputerFrame`, `InfoPanel` |
+| Graphics (SVG, inside `SvgLayer`) | `Crosshair`, `CoordinateLabel`, `TargetRing`, `DashedOrbit`, `AnnotationLine`, `Arrow`, `DimensionLine`, `NumberedPin`, `SvgLabel` |
+| Graphics (HTML) | `TechnicalAnnotation`, `AmSymbol` (+ `SYMBOL_MEANING`) |
+| Layout | `formats` (canvas, safe box, header/footer bands, `sectionTop` per format), `column(format, index, span)` |
+| Motion | `Cut`, `PixelWipe`, `pixelStep`, `stepCount`, `spriteFrame`, `PIXEL_STEPS` |
+| Tokens | `color`, `themes`, `typeStyles`, `fontFamily`, `fonts`, `space`, `radius`, `stroke`, `texture` |
+
+Not ported: `ColorBoard`, `TypeBoard`, `GridBoard` and `Cover` are reference boards. The three template families are composed from the components; see [`src/compositions/AmProjectRevealVertical.tsx`](src/compositions/AmProjectRevealVertical.tsx) for Project Reveal at 9:16.
+
+```tsx
+import { useCurrentFrame } from "remotion";
+import { Slide, BrandHeader, BrandFooter, Abs, Cut, PixelWipe, CharacterFrame, PixelSprite, XUNA_SPRITE, spriteFrame, formats } from "../design-system";
+
+const { safe } = formats["9:16"];
+
+export const Cover = () => {
+  const frame = useCurrentFrame();
+  return (
+    <Slide format="9:16" grid grain>
+      <BrandHeader context="PRJ—001 · Artificial life" />
+      <PixelWipe at={6} className="am-abs am-xl" style={{ left: 66, top: 340 }}>XUNA</PixelWipe>
+      <PixelWipe at={24} direction="down" className="am-abs" style={{ left: 500, top: 600 }}>
+        <CharacterFrame size={400}>
+          <PixelSprite sheet={XUNA_SPRITE} column={spriteFrame(frame, XUNA_SPRITE.columns, 4, 24)} scale={3} />
+        </CharacterFrame>
+      </PixelWipe>
+      <Cut at={64}>
+        <Abs left={safe.left} top={1080} width={560} className="am-b">A small physical creature that senses light.</Abs>
+      </Cut>
+      <BrandFooter />
+    </Slide>
+  );
+};
+```
+
+### Motion
+
+- **Cut** (`<Cut at>`) for almost everything: elements appear on a frame, never fade.
+- **Pixel steps** (`<PixelWipe>`, `pixelStep`, `stepCount`): 8 hard steps over 8 frames by default. Use for the one dominant element of a scene.
+- **Sprites** (`spriteFrame`): hold each XUNA frame for a whole number of video frames, scale by whole multiples.
+- Drive everything from `useCurrentFrame()`. No CSS `transition`/`animation`, no `interpolate` with easing, no blur, opacity fades or glitch.
+
+### Other ways to use the tokens
+
+```tsx
+// Inline styles: typed tokens
+import { themes, typeStyles, space } from "../design-system";
+<h1 style={{ ...typeStyles.h1, color: themes.light["on-surface"], marginBottom: space["space-5"] }} />
+
+// Tailwind: utility names mirror token names
+<div className="bg-am-surface text-am-on-surface text-am-h1 p-space-4 border-line border-am-rule rounded-none" />
+```
+
+- Theme: inside components, set the ground with `Slide`/`AmScope` (`ground="dark"` → `.am.is-dark`). Outside an `.am` scope, `[data-theme="dark"]` on a container switches `surface`, `on-surface`, `muted`, `rule` and `grid-line` for Tailwind `am-*` colours and any `var(--…)`.
+- Known artifact behaviour, kept as is: on `ink` grounds the `f-ink` tag, `CodeFrame` and the ink outlines of filled symbols lose their edge, and the `ImageFrame` halftone uses `paper` dots. Prefer light grounds for those components.
+
+### Visual QA
+
+`npm run ds:sheet` renders every component in light and dark to `out/am-component-sheet.png`; compare it with the artifact previews after changing the artifact or the components.

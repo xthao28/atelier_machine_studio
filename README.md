@@ -16,7 +16,7 @@ Sau khi `git clone` repo này về máy mới, bạn chỉ cần mở AI Agent (
 
 1. **[`AI_ONBOARDING.md`](./AI_ONBOARDING.md):** Hướng dẫn từng bước cho AI Agent khi clone sang máy mới (cài đặt `node_modules`, clone 2 bộ skill `video-shotcraft` & `anatomy`, bối cảnh kỹ thuật 5 chặng của XUNA, và danh sách tài nguyên đã đồng bộ sẵn).
 2. **[`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md):** Toàn bộ đặc tả Design System chính thức của **ATELIER MACHINE** (Color Tokens, Typography `Space Grotesk` + `IBM Plex Mono`, Safe Zones `9:16`, 15 Graphic Language Elements, 6 Template Families, 29 Components).
-3. **[`src/styles/atelier-machine.css`](./src/styles/atelier-machine.css):** Toàn bộ CSS Variables (`tokens.css`) và các class `.am-*` trích xuất nguyên bản từ artifact.
+3. **[`design-system-artifact/project/`](./design-system-artifact/project/):** Nguồn chuẩn của design system (`tokens.json`, `components/bundle.css`, README từng component). Chạy `npm run ds:build` để sinh lại [`src/styles/tokens.css`](./src/styles/tokens.css), [`src/styles/atelier-machine.css`](./src/styles/atelier-machine.css) và [`src/design-system/tokens.ts`](./src/design-system/tokens.ts); không sửa tay các file sinh ra.
 
 ---
 
