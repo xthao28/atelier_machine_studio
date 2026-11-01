@@ -23,12 +23,12 @@ Read this skill before authoring or editing any Reel (`src/compositions/Reel*.ts
    - `orange` (`#FF9B56`): Artificial-life accent (`Xuân` / `Xuna` frame, Twin B, speaker badge).
    - `lime` (`#D9F57A`): Technical & active word highlight accent (`Twin A`, active spoken word pill, verified status).
 3. **Dual-Locale & Language Purity Rules (`vi` vs `en`):**
-   - **Vietnamese Channel (`vi`):**
-     - Pet name is **`"Xuân"`** (both in on-screen text and Vietnamese TTS voiceover).
-     - **100% pure Vietnamese** for all UI labels, headers, badges, and narrative text. English words are strictly prohibited unless they are mandatory technical/hardware proper nouns (`AI`, `Pixel Art`, `LILYGO T-Display-S3`, `ESP32-S3`, `C++11`, `Flash NVS`, `CRC32`, `GPIO0 / GPIO14`).
+   - **Both Channels (`vi` & `en`):**
+     - Pet name displayed on screen (headers, UI cards, subtitles) is always **`"Xuna"`** (only the first letter `X` capitalized).
+     - **Vietnamese TTS Pronunciation Rule (`tts_text` vs `text`):** In `scripts/generate-reel01-tts.py`, the display `text` keeps `"Xuna"` as a single word for subtitles, while `tts_text` passes **`"Xu na"`** (two syllables separated by a space) to `vi-VN-NamMinhNeural` so the Vietnamese neural voice pronounces `/su na/` ("Xuna") naturally without ever spelling out `X-U-N-A`.
+   - **Vietnamese Channel (`vi`) Language Purity:**
+     - **100% pure Vietnamese** for all UI labels, headers, badges, and narrative text. English words are strictly prohibited unless they are mandatory technical/hardware proper nouns (`Xuna`, `AI`, `Pixel Art`, `LILYGO T-Display-S3`, `ESP32-S3`, `C++11`, `Flash NVS`, `CRC32`, `GPIO0 / GPIO14`).
      - Any text containing Vietnamese diacritics must use **`"Be Vietnam Pro"`** (`FONT_SANS`), because `IBM Plex Mono` in `public/fonts/` only covers ASCII/Latin glyphs.
-   - **International English Channel (`en`):**
-     - Pet name is **`"Xuna"`** (only the first letter `X` capitalized in narrative and UI).
 
 ---
 

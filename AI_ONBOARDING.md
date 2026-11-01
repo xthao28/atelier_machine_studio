@@ -44,9 +44,10 @@ Sau khi chạy xong `npm run setup:skills`, hãy xác nhận 3 thư mục skill 
        - Nền phụ / thanh tiêu đề card (`--paper-shade`): `#E7DFCF` (vàng cát ấm).
        - Mực & viền (`--ink`): `#242424`; chữ phụ (`--ink-soft`): `#5C584F`; chữ mờ (`--paper-soft`): `#8A8478`.
        - Điểm nhấn (`Accents`): `--orange: #FF9B56` (`Xuân` / `Xuna`, Twin B, nhãn người đọc) và `--lime: #D9F57A` (kỹ thuật, Twin A, từ đang đọc).
-     - **Quy tắc Đa Ngôn Ngữ (`vi` vs `en`) & Tên Nhân Vật:**
-       - **Bản Tiếng Việt (`vi`):** Tên nhân vật hiển thị và phát âm là **`"Xuân"`**. Giao diện phải **thuần Việt 100%**, chỉ giữ tiếng Anh cho các thuật ngữ phần cứng/kỹ thuật bắt buộc (`AI`, `Pixel Art`, `LILYGO T-Display-S3`, `ESP32-S3`, `C++11`, `Flash NVS`, `CRC32`, `GPIO0 / GPIO14`). Mọi text có dấu tiếng Việt dùng font `"Be Vietnam Pro"` (`FONT_SANS`).
-       - **Bản Tiếng Anh (`en`):** Tên nhân vật hiển thị và phát âm là **`"Xuna"`** (chỉ viết hoa chữ `X` đầu tiên trong câu và UI).
+     - **Quy tắc Đa Ngôn Ngữ (`vi` vs `en`) & Tên Nhân Vật (`"Xuna"`):**
+       - **Cả 2 bản Tiếng Việt (`vi`) và Tiếng Anh (`en`):** Tên nhân vật hiển thị trên màn hình (tiêu đề, thẻ card, phụ đề) thống nhất là **`"Xuna"`** (chỉ viết hoa chữ `X` đầu tiên).
+       - **Mẹo phát âm chuẩn `"Xuna"` cho AI Tiếng Việt (`tts_text` vs `text`):** Trong [`scripts/generate-reel01-tts.py`](./scripts/generate-reel01-tts.py), chuỗi `text` hiển thị phụ đề giữ nguyên `"Xuna"`, còn chuỗi `tts_text` gửi vào `vi-VN-NamMinhNeural` được tách âm tiết thành **`"Xu na"`** để giọng đọc AI tiếng Việt phát âm mượt chuẩn `/su na/` ("Xuna") mà không bị đánh vần từng chữ cái.
+       - **Thuần Việt 100% ở bản `vi`:** Giao diện bản Việt phải thuần Việt 100%, chỉ giữ tiếng Anh cho các thuật ngữ phần cứng/kỹ thuật bắt buộc (`Xuna`, `AI`, `Pixel Art`, `LILYGO T-Display-S3`, `ESP32-S3`, `C++11`, `Flash NVS`, `CRC32`, `GPIO0 / GPIO14`). Mọi text có dấu tiếng Việt dùng font `"Be Vietnam Pro"` (`FONT_SANS`).
      - **Thiết kế Phụ đề đồng bộ (`SubtitleCardStrip` & `<AmCaptionRail>`):**
        - Phụ đề đặt trong thẻ card rộng full-width `936px` (`left: 72`, `right: 72`, `top: 1394` trên Reel hoặc `1492` dưới Footer), nền `#FAF8F3`, viền `3px solid #242424`, có thanh tiêu đề `#E7DFCF` phía trên (gồm nhãn người đọc nền cam + bộ đếm beat/timecode + cột sóng âm equalizer) và phần chữ highlight từng từ phía dưới (từ đang đọc tô hộp `#D9F57A` hoặc `#FF9B56` viền `2px solid #242424`).
      - **Giọng đọc Neural TTS (`scripts/generate-reel01-tts.py`):**

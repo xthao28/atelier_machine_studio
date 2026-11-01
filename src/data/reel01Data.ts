@@ -2,7 +2,7 @@
  * Dual-Locale Data & Word-Anchored Timeline for Instagram Reel #01 (`src/data/reel01Data.ts`).
  *
  * Updated per user feedback:
- * 1. Naming: Vietnamese uses `"Xuân"`, English uses `"Xuna"` (capital X only).
+ * 1. Naming: Both Vietnamese and English use `"Xuna"` (capital X only), with Vietnamese TTS phonetically reading `"Xu na"` so it pronounces `"Xuna"` accurately.
  * 2. Faster, punchier 1.16x voiceover cadence (`38.0s` = `2,280 frames @ 60fps`).
  * 3. Pure Vietnamese in `vi` (except mandatory hardware/AI terms).
  */
@@ -130,7 +130,7 @@ export const REEL01_PACKS: Record<ReelLocale, ReelLocalePack> = {
   vi: {
     locale: "vi",
     audioFile: "audio/voiceover/reel01-vi.mp3",
-    headerBrand: "Xuân · NHẬT KÝ CHẾ TẠO 01",
+    headerBrand: "Xuna · NHẬT KÝ CHẾ TẠO 01",
     beat1: {
       tagDay1: "NGÀY 01 · MỚI NỞ",
       tagDay7: "NGÀY 07 · KHÁC BIỆT",
@@ -150,7 +150,7 @@ export const REEL01_PACKS: Record<ReelLocale, ReelLocalePack> = {
     beat2: {
       kicker: "ĐỊNH NGHĨA LẠI THÚ CƯNG SỐ",
       rejectLine: "Không phải Chatbot nhét trong vỏ nhựa",
-      headline: "Đây là Xuân",
+      headline: "Đây là Xuna",
       subhead: "Một sinh vật AI nhỏ bằng hai ngón tay, sống thật và lớn lên trên bàn làm việc của bạn.",
       pills: ["Sinh vật AI", "LILYGO T-Display-S3", "Pixel Art"],
     },
@@ -162,7 +162,7 @@ export const REEL01_PACKS: Record<ReelLocale, ReelLocalePack> = {
           step: "01",
           badge: "GPIO0 / GPIO14",
           title: "Cảm nhận khen và nhắc nhở",
-          desc: "Bấm nút trong 10 giây sau mỗi hành động để dạy điều Xuân nên làm lại.",
+          desc: "Bấm nút trong 10 giây sau mỗi hành động để dạy điều Xuna nên làm lại.",
           row: 2,
           highlightAtSec: 0.2,
         },
@@ -204,9 +204,9 @@ export const REEL01_PACKS: Record<ReelLocale, ReelLocalePack> = {
     },
     beat5: {
       kicker: "CÂU HỎI DÀNH CHO BẠN",
-      headline: "Sau 7 ngày ở cạnh bạn, Xuân sẽ thành ai?",
+      headline: "Sau 7 ngày ở cạnh bạn, Xuna sẽ thành ai?",
       subhead: "Một đứa tăng động thích làm trò hay một kẻ trầm tư? Để lại dự đoán bên dưới nhé.",
-      ctaText: "THEO DÕI HÀNH TRÌNH CHẾ TẠO XUÂN",
+      ctaText: "THEO DÕI HÀNH TRÌNH CHẾ TẠO Xuna",
     },
     fallbackWords: REEL01_VOICE_WORDS_VI,
   },

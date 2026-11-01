@@ -44,7 +44,7 @@ export const AmCaptionRail: React.FC<AmCaptionRailProps> = ({
   sceneId,
   top = 1492,
   width = 936,
-  speakerLabel = "THUYẾT MINH · XUÂN",
+  speakerLabel = "THUYẾT MINH · Xuna",
 }) => {
   const { activeWord, activeChunk, masterTimeMs, isStillness } = useWordTimeline(sceneId);
 
