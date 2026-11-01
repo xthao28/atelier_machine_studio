@@ -3,13 +3,14 @@
 /* No @font-face here: webpack cannot resolve /fonts URLs, so src/design-system/fonts.ts loads them with staticFile(). */
 
 :root, [data-theme="light"] {
-  --paper: #f2efe7;
+  --paper: #f4efe4;
+  --card: #faf8f3;
   --ink: #242424;
   --lime: #d9f57a;
   --lilac: #d9cbf6;
   --orange: #ff9b56;
-  --paper-shade: #e4dfd1;
-  --ink-soft: #4a4a46;
+  --paper-shade: #e7dfcf;
+  --ink-soft: #5c584f;
   --paper-soft: #b9b5aa;
   --grid-line: #d6d1c1;
   --surface: var(--paper);
@@ -18,13 +19,14 @@
   --rule: var(--ink);
 }
 [data-theme="dark"] {
-  --paper: #f2efe7;
+  --paper: #f4efe4;
+  --card: #faf8f3;
   --ink: #242424;
   --lime: #d9f57a;
   --lilac: #d9cbf6;
   --orange: #ff9b56;
-  --paper-shade: #e4dfd1;
-  --ink-soft: #4a4a46;
+  --paper-shade: #e7dfcf;
+  --ink-soft: #5c584f;
   --paper-soft: #b9b5aa;
   --grid-line: #3b3b38;
   --surface: var(--ink);

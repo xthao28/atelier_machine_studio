@@ -6,13 +6,14 @@
 .am, .am *, .am *::before, .am *::after { box-sizing: border-box; }
 
 .am {
-  --c-paper: var(--paper, #F2EFE7);
+  --c-paper: var(--paper, #F4EFE4);
+  --c-card: var(--card, #FAF8F3);
   --c-ink: var(--ink, #242424);
   --c-lime: var(--lime, #D9F57A);
   --c-lilac: var(--lilac, #D9CBF6);
   --c-orange: var(--orange, #FF9B56);
-  --c-shade: var(--paper-shade, #E4DFD1);
-  --c-soft: var(--ink-soft, #4A4A46);
+  --c-shade: var(--paper-shade, #E7DFCF);
+  --c-soft: var(--ink-soft, #5C584F);
   --c-psoft: var(--paper-soft, #B9B5AA);
   --f-sans: var(--font-sans, "Space Grotesk", system-ui, sans-serif);
   --f-mono: var(--font-mono, "IBM Plex Mono", ui-monospace, monospace);

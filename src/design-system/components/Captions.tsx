@@ -35,9 +35,17 @@ export interface AmCaptionRailProps {
   sceneId: EpisodeSceneId;
   /** Default `1492` sits cleanly below `BrandFooter` (`y = 1400..1464`) per the Overlay Law. */
   top?: number;
+  /** Full editorial card width (`936px` by default, spanning `x: 72..1008` to match header/cards). */
+  width?: number;
+  speakerLabel?: string;
 }
 
-export const AmCaptionRail: React.FC<AmCaptionRailProps> = ({ sceneId, top = 1492 }) => {
+export const AmCaptionRail: React.FC<AmCaptionRailProps> = ({
+  sceneId,
+  top = 1492,
+  width = 936,
+  speakerLabel = "THUYẾT MINH · XUÂN",
+}) => {
   const { activeWord, activeChunk, masterTimeMs, isStillness } = useWordTimeline(sceneId);
 
   if (activeChunk.words.length === 0) return null;
@@ -48,72 +56,84 @@ export const AmCaptionRail: React.FC<AmCaptionRailProps> = ({ sceneId, top = 149
       style={{
         left: safe.left,
         top,
-        width: SAFE_WIDTH,
-        border: "var(--stroke-line) solid var(--on-surface)",
-        background: "var(--surface)",
-        color: "var(--on-surface)",
-        display: "grid",
-        gridTemplateColumns: "156px 1fr",
-        minHeight: 84,
+        width,
+        border: `3px solid ${color.ink}`,
+        background: color.card,
+        color: color.ink,
+        display: "flex",
+        flexDirection: "column",
         boxSizing: "border-box",
         zIndex: 30,
       }}
     >
-      {/* Left telemetry cell: VO language + live word-synced timecode */}
+      {/* Top header bar — matches the unified editorial card system */}
       <div
         style={{
-          borderRight: "var(--stroke-hair) solid var(--on-surface)",
-          padding: "10px 14px",
           display: "flex",
-          flexDirection: "column",
           justifyContent: "space-between",
-          background: isStillness ? color.orange : "var(--surface-alt, var(--paper-shade))",
-          color: color.ink,
+          alignItems: "center",
+          padding: "10px 22px",
+          borderBottom: `2px solid ${color.ink}`,
+          background: isStillness ? color.orange : color["paper-shade"],
         }}
       >
-        <div
-          className="am-lab"
-          style={{
-            fontSize: 16,
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-            color: color.ink,
-          }}
-        >
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <span
             style={{
-              width: 8,
-              height: 8,
-              background: activeWord ? color.orange : color.ink,
-              display: "inline-block",
+              fontFamily: '"Be Vietnam Pro", var(--font-sans)',
+              fontSize: 16,
+              fontWeight: 700,
+              color: color.ink,
+              background: color.orange,
+              border: `2px solid ${color.ink}`,
+              padding: "3px 12px",
             }}
-          />
-          {isStillness ? "HOLD · LATCH" : "VO · VI—EP01"}
+          >
+            {isStillness ? "TẠM DỪNG · LATCH" : speakerLabel}
+          </span>
+          <span
+            className="am-meta"
+            style={{
+              fontSize: 16,
+              fontWeight: 500,
+              color: color["ink-soft"],
+            }}
+          >
+            {formatMasterTimecode(masterTimeMs)}
+          </span>
         </div>
-        <div
-          className="am-meta"
-          style={{
-            fontSize: 18,
-            fontWeight: 500,
-            color: color.ink,
-          }}
-        >
-          {formatMasterTimecode(masterTimeMs)}
+
+        {/* Minimalist equalizer indicator */}
+        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+          {[0, 1, 2, 3, 4].map((bar) => {
+            const active = activeWord !== null && (activeWord.sceneWordIndex + bar) % 2 === 0;
+            return (
+              <span
+                key={bar}
+                style={{
+                  width: 5,
+                  height: active ? 16 : 8,
+                  background: active ? color.ink : color["paper-soft"],
+                  display: "inline-block",
+                }}
+              />
+            );
+          })}
         </div>
       </div>
 
-      {/* Right verbatim word rail */}
+      {/* Bottom verbatim word-by-word body */}
       <div
         style={{
-          padding: "12px 18px",
+          padding: "16px 22px 18px 22px",
           display: "flex",
           flexWrap: "wrap",
           alignItems: "center",
           gap: "6px 8px",
+          minHeight: 108,
           fontFamily: '"Be Vietnam Pro", var(--font-sans)',
           fontSize: 27,
-          lineHeight: 1.25,
+          lineHeight: 1.32,
           fontWeight: 600,
         }}
       >
@@ -121,48 +141,36 @@ export const AmCaptionRail: React.FC<AmCaptionRailProps> = ({ sceneId, top = 149
           const isCurrent = activeWord?.sceneWordIndex === w.sceneWordIndex;
           const isPast =
             activeWord !== null && w.sceneWordIndex < activeWord.sceneWordIndex;
-          const isXuna = w.cleanText === "xuna";
+          const isPetName = w.cleanText === "xuna" || w.cleanText === "xuân";
 
           let wordBg = "transparent";
-          let wordColor = "var(--on-surface)";
+          let wordColor: string = color.ink;
           let wordBorder = "2px solid transparent";
 
           if (isCurrent) {
-            if (isXuna) {
-              wordBg = color.orange;
-              wordColor = color.ink;
-              wordBorder = `2px solid ${color.ink}`;
-            } else if (w.isTechnicalTerm) {
-              wordBg = color.lime;
-              wordColor = color.ink;
-              wordBorder = `2px solid ${color.ink}`;
-            } else {
-              wordBg = "var(--on-surface)";
-              wordColor = "var(--surface)";
-              wordBorder = "2px solid var(--on-surface)";
-            }
-          } else if (w.isTechnicalTerm) {
-            wordBg = "transparent";
-            wordColor = "var(--on-surface)";
-            wordBorder = "2px solid var(--rule)";
-          } else if (!isPast && activeWord !== null) {
-            wordColor = "var(--muted)";
+            wordBg = isPetName ? color.orange : color.lime;
+            wordColor = color.ink;
+            wordBorder = `2px solid ${color.ink}`;
+          } else if (isPast) {
+            wordColor = color.ink;
+          } else if (activeWord !== null) {
+            wordColor = color["paper-soft"];
           }
 
           return (
             <span
               key={`${w.sceneWordIndex}-${w.startMs}`}
               style={{
-                padding: "1px 7px",
+                padding: "2px 8px",
                 background: wordBg,
                 color: wordColor,
                 border: wordBorder,
                 fontFamily: w.isTechnicalTerm
                   ? "var(--font-mono)"
                   : '"Be Vietnam Pro", var(--font-sans)',
-                fontSize: w.isTechnicalTerm ? 23 : 27,
-                fontWeight: w.isTechnicalTerm ? 500 : 600,
-                letterSpacing: w.isTechnicalTerm ? "0.03em" : "-0.01em",
+                fontSize: w.isTechnicalTerm ? 24 : 27,
+                fontWeight: isCurrent ? 700 : 600,
+                letterSpacing: w.isTechnicalTerm ? "0.02em" : "-0.01em",
               }}
             >
               {w.text.trim()}

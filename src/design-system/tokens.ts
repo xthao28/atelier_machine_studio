@@ -4,13 +4,14 @@
 
 /** Fixed brand colours (same in every theme). */
 export const color = {
-  "paper": "#F2EFE7",
+  "paper": "#F4EFE4",
+  "card": "#FAF8F3",
   "ink": "#242424",
   "lime": "#D9F57A",
   "lilac": "#D9CBF6",
   "orange": "#FF9B56",
-  "paper-shade": "#E4DFD1",
-  "ink-soft": "#4A4A46",
+  "paper-shade": "#E7DFCF",
+  "ink-soft": "#5C584F",
   "paper-soft": "#B9B5AA"
 } as const;
 
@@ -18,17 +19,17 @@ export const color = {
 export const themes = {
   "light": {
     "grid-line": "#D6D1C1",
-    "surface": "#F2EFE7",
+    "surface": "#F4EFE4",
     "on-surface": "#242424",
-    "muted": "#4A4A46",
+    "muted": "#5C584F",
     "rule": "#242424"
   },
   "dark": {
     "grid-line": "#3B3B38",
     "surface": "#242424",
-    "on-surface": "#F2EFE7",
+    "on-surface": "#F4EFE4",
     "muted": "#B9B5AA",
-    "rule": "#F2EFE7"
+    "rule": "#F4EFE4"
   }
 } as const;
 

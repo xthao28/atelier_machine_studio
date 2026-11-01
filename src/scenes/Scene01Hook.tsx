@@ -78,7 +78,7 @@ const Beat1ProjectRevealCover: React.FC = () => {
   const activeExpr = EXPRESSIONS[exprIndex]!;
 
   return (
-    <Slide format="9:16" ground="paper" grid grain>
+    <Slide format="9:16" ground="paper" grain>
       <BrandHeader context="PRJ—001 · Artificial life" />
 
       <PixelWipe
@@ -209,7 +209,7 @@ const Beat2WhatXunaDoes: React.FC = () => {
   const frame = useCurrentFrame();
 
   return (
-    <Slide format="9:16" ground="lilac" grid grain>
+    <Slide format="9:16" ground="lilac" grain>
       <BrandHeader context="PRJ—001 · What XUNA does" />
 
       <Abs left={safe.left} top={sectionTop} width={safeWidth}>

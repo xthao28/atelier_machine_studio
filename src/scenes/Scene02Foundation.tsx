@@ -64,7 +64,7 @@ export const Scene02Foundation: React.FC<{ dark?: boolean }> = ({ dark = false }
   );
 
   return (
-    <Slide format="9:16" ground={dark ? "dark" : "paper"} grid grain>
+    <Slide format="9:16" ground={dark ? "dark" : "paper"} grain>
       <BrandHeader context="PRJ—001 · Hardware anatomy" />
 
       <Abs left={safe.left} top={sectionTop} width={safeWidth}>

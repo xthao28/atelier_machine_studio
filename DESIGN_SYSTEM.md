@@ -73,15 +73,16 @@ Two themes: `light` (Light · Paper, the default on `:root`) and `dark` (Dark ·
 
 | Token | Light | Dark | Use |
 | :--- | :--- | :--- | :--- |
-| `paper` | `#F2EFE7` | `#F2EFE7` | Brand paper. Main backgrounds, large negative space; text on `ink` |
-| `ink` | `#242424` | `#242424` | Brand ink. Type on paper and accents, outlines, technical graphics, dark grounds |
-| `lime` | `#D9F57A` | `#D9F57A` | Technical accent: indicators, highlights, labels, project-number block. Text on it is `ink` |
+| `paper` | `#F4EFE4` | `#F4EFE4` | Brand warm bright cream paper. Main grid-free backgrounds, large negative space; text on `ink` |
+| `card` | `#FAF8F3` | `#FAF8F3` | Warm editorial card surface on top of `paper` or `paper-shade` |
+| `ink` | `#242424` | `#242424` | Brand ink. Type on paper, card, and accents, outlines, technical graphics, dark grounds |
+| `lime` | `#D9F57A` | `#D9F57A` | Technical accent: indicators, active spoken word highlights, labels, project-number block. Text on it is `ink` |
 | `lilac` | `#D9CBF6` | `#D9CBF6` | Concept field: concept and experimental slides, comparison columns |
-| `orange` | `#FF9B56` | `#FF9B56` | Artificial-life accent: XUNA, character frames, warm highlights. Never body text on `paper` |
-| `paper-shade` | `#E4DFD1` | `#E4DFD1` | Quiet panel tint: image-frame ground, photo placeholders. Not for text |
-| `ink-soft` | `#4A4A46` | `#4A4A46` | Secondary text on `paper`, `paper-shade`, `lime`, `lilac`. Not on `orange`: use `ink` |
-| `paper-soft` | `#B9B5AA` | `#B9B5AA` | Secondary text on `ink` |
-| `grid-line` | `#D6D1C1` | `#3B3B38` | Technical grid lines only; never carries text or meaning |
+| `orange` | `#FF9B56` | `#FF9B56` | Artificial-life accent: Xuân (VI) / Xuna (EN), character frames, warm highlights. Never body text on `paper` |
+| `paper-shade` | `#E7DFCF` | `#E7DFCF` | Warm sand panel tint: card header strips, secondary panels, relief blocks. Not for text |
+| `ink-soft` | `#5C584F` | `#5C584F` | Secondary text on `paper`, `card`, `paper-shade`, `lime`, `lilac`. Not on `orange`: use `ink` |
+| `paper-soft` | `#B9B5AA` | `#B9B5AA` | Secondary text on `ink` and muted upcoming words in subtitle strips |
+| `grid-line` | `#D6D1C1` | `#3B3B38` | Optional diagram lines only (background grid `am-gridbg` is disabled in minimalist editorial video layouts) |
 | `surface` | → `paper` | → `ink` | Slide ground in the current theme |
 | `on-surface` | → `ink` | → `paper` | Primary text, outlines and rules on `surface` |
 | `muted` | → `ink-soft` | → `paper-soft` | Secondary text and mono metadata on `surface` |

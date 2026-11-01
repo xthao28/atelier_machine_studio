@@ -34,13 +34,23 @@ Sau khi chạy xong `npm run setup:skills`, hãy xác nhận 3 thư mục skill 
    - Đây là **Design System chính thức của studio `ATELIER MACHINE`** (*"Making Machines Feel Alive." / "Làm cho máy móc như có sự sống."*).
    - **Nguồn chuẩn duy nhất** là artifact trong [`design-system-artifact/project/`](./design-system-artifact/project/) (`tokens.json` + `components/bundle.css`). Các file `src/styles/tokens.css`, `src/styles/atelier-machine.css`, `src/design-system/tokens.ts` được **sinh tự động** bằng `npm run ds:build`, không sửa tay. Trong code không gõ mã hex / cỡ chữ / độ dày viền trực tiếp: dùng CSS variable, class `.am-*`, Tailwind `am-*` hoặc `tokens.ts`.
    - **Component React cho video** nằm ở [`src/design-system/`](./src/design-system/index.ts) (xem `DESIGN_SYSTEM.md` §11): `Slide`, `BrandHeader`, `CharacterFrame` + `PixelSprite` (sprite XUNA thật), `MetadataBlock`, `StatusIndicator`… cùng helper chuyển động `Cut` / `PixelWipe` (chỉ cắt cảnh và bước 8 frame). Mẫu dựng sẵn: [`src/compositions/AmProjectRevealVertical.tsx`](./src/compositions/AmProjectRevealVertical.tsx).
-   - **Quy tắc bất di bất dịch:**
-     - Phong cách: **Contemporary Retro-Futurism** (tạp chí kỹ thuật thập niên 1970s–90s).
+   - **Quy tắc bất di bất dịch (Style Thiết Kế Mới — Warm Cream Grid-Free Editorial):**
+     - Phong cách: **Contemporary Retro-Futurism Minimalist Editorial** (tối giản, sạch sẽ, không rối mắt).
+     - **Bỏ lưới nền (`grid={false}`):** KHÔNG vẽ lưới kỹ thuật (`am-gridbg`) đè lên nền video. Bố cục phân tách bằng các thẻ card phẳng viền `3px solid #242424` rõ ràng.
      - **Flat 100%:** Không đổ bóng (`no shadows`), không chuyển sắc (`no gradients`), không phát sáng (`no glow`), không hiệu ứng glitch/blur.
-     - **Bảng màu (`tokens.css`):** Ground là `--paper: #F2EFE7` (45%) hoặc `--ink: #242424` (30%); Accents là `--lime: #D9F57A` (technical ~10%), `--lilac: #D9CBF6` (concept/code ~10%), `--orange: #FF9B56` (artificial life / XUNA ~5%); phụ trợ `--paper-shade: #E4DFD1`, `--ink-soft: #4A4A46`, `--paper-soft: #B9B5AA`, `--grid-line: #D6D1C1` / `#3B3B38`.
-     - **Typography (Canvas 1080px):** `Space Grotesk` cho Display & Body (`.display-xl` 220px, `.display` 144px, `.h1` 96px tối đa 8 từ, `.h2` 64px, `.h3` 44px, `.body-lg` 36px tối đa 25 từ/cảnh, `.body` 32px, `.caption` 26px — dùng *Sentence case*). `IBM Plex Mono` cho Technical (`.label` / `.am-lab` 22px UPPER-CASE tracking `+0.08em`, `.meta` 20px, `.data` 28px).
-     - **Safe Zone Video Dọc `9:16` (`1080 × 1920` — `.am-slide.tall`):** Safe box `x: 72px → 920px` (`--margin-post: 72px`, `--safe-right-vertical: 160px`), `y: 250px → 1470px` (`--safe-top-vertical: 250px`, `--safe-bottom-vertical: 450px`). Lưới 4 cột, `--gutter: 24px`, bước lưới kỹ thuật `--grid-pitch: 72px`. `BrandHeader` (`.am-header`) ở `y = 270`, `BrandFooter` (`.am-footer`) ở `y = 1400`.
-     - **Viền & Khung XUNA:** Viền `--stroke-line: 3px`, đường mảnh `--stroke-hair: 2px`, góc vuông (`0px`), chỉ `.am-tag` mới bo tròn pill (`999px`). Nhân vật Pixel Art XUNA luôn đặt trong `CharacterFrame` (`.am-char`) cắt góc bậc thang `8px` trên nền `--orange` với `image-rendering: pixelated`.
+     - **Bảng màu ấm sáng (`tokens.json` / `tokens.css`):**
+       - Nền chính (`--paper`): `#F4EFE4` (kem sáng ấm dịu mắt, tuyệt đối không dùng trắng chói `#FFFFFF` hay xám lạnh).
+       - Nền thẻ card (`--card`): `#FAF8F3` (kem sáng nổi nhẹ trên nền `#F4EFE4`).
+       - Nền phụ / thanh tiêu đề card (`--paper-shade`): `#E7DFCF` (vàng cát ấm).
+       - Mực & viền (`--ink`): `#242424`; chữ phụ (`--ink-soft`): `#5C584F`; chữ mờ (`--paper-soft`): `#8A8478`.
+       - Điểm nhấn (`Accents`): `--orange: #FF9B56` (`Xuân` / `Xuna`, Twin B, nhãn người đọc) và `--lime: #D9F57A` (kỹ thuật, Twin A, từ đang đọc).
+     - **Quy tắc Đa Ngôn Ngữ (`vi` vs `en`) & Tên Nhân Vật:**
+       - **Bản Tiếng Việt (`vi`):** Tên nhân vật hiển thị và phát âm là **`"Xuân"`**. Giao diện phải **thuần Việt 100%**, chỉ giữ tiếng Anh cho các thuật ngữ phần cứng/kỹ thuật bắt buộc (`AI`, `Pixel Art`, `LILYGO T-Display-S3`, `ESP32-S3`, `C++11`, `Flash NVS`, `CRC32`, `GPIO0 / GPIO14`). Mọi text có dấu tiếng Việt dùng font `"Be Vietnam Pro"` (`FONT_SANS`).
+       - **Bản Tiếng Anh (`en`):** Tên nhân vật hiển thị và phát âm là **`"Xuna"`** (chỉ viết hoa chữ `X` đầu tiên trong câu và UI).
+     - **Thiết kế Phụ đề đồng bộ (`SubtitleCardStrip` & `<AmCaptionRail>`):**
+       - Phụ đề đặt trong thẻ card rộng full-width `936px` (`left: 72`, `right: 72`, `top: 1394` trên Reel hoặc `1492` dưới Footer), nền `#FAF8F3`, viền `3px solid #242424`, có thanh tiêu đề `#E7DFCF` phía trên (gồm nhãn người đọc nền cam + bộ đếm beat/timecode + cột sóng âm equalizer) và phần chữ highlight từng từ phía dưới (từ đang đọc tô hộp `#D9F57A` hoặc `#FF9B56` viền `2px solid #242424`).
+     - **Giọng đọc Neural TTS (`scripts/generate-reel01-tts.py`):**
+       - Sử dụng `edge-tts` (`vi-VN-NamMinhNeural` cho bản Việt và `en-US-BrianNeural` cho bản Anh), tăng tốc `1.16x` (`ffmpeg -filter:a atempo=1.16`) và xuất word-timestamp tự động vào `src/data/reel01VoiceData.ts`.
 2. **`.agents/skills/video-shotcraft/SKILL.md`**
    - Đọc để nắm bộ **120+ Shot Recipe Cards** (2.5D camera pan/tilt, hero reveal, split-screen, kinetic typography, spotlight zoom, beat-synced cuts).
 3. **`.agents/skills/anatomy/SKILL.md` & [`src/components/isometric/kit/iso-kit.ts`](./src/components/isometric/kit/iso-kit.ts) & [`src/components/isometric/kit/draw.tsx`](./src/components/isometric/kit/draw.tsx)**
