@@ -6,6 +6,12 @@ export interface AnatomyClockOptions {
   explodeStart?: number;
   /** Frame when the assembly collapses back together (optional). */
   collapseStart?: number;
+  /** Word-anchored frames where GPIO0 is depressed (optional; defaults to [1.7s]). */
+  gpio0Frames?: number[];
+  /** Word-anchored frames where GPIO14 is depressed (optional; defaults to [3.1s]). */
+  gpio14Frames?: number[];
+  /** Word-anchored frame when NVS active slot switches from life0 (0) to life1 (1). */
+  slotToggleFrame?: number;
   /** Quantize motion into discrete mechanical steps (default: false for smooth 60fps springs). */
   quantized?: boolean;
   /** Number of discrete steps when quantized is true. */
@@ -44,6 +50,9 @@ const quantize01 = (v: number, steps: number) => {
 export function useAnatomyClock({
   explodeStart = 24,
   collapseStart,
+  gpio0Frames,
+  gpio14Frames,
+  slotToggleFrame,
   quantized = false,
   steps = PIXEL_STEPS,
 }: AnatomyClockOptions = {}): AnatomyClock {
@@ -73,11 +82,8 @@ export function useAnatomyClock({
   const tier3 = springAt(explodeStart + Math.round(fps * 0.2), 76, 17, 1.05);
   const explode = tier3;
 
-  // Smooth spring tactile button presses:
-  // GPIO0 pressed around 1.8s..2.5s, GPIO14 pressed around 3.2s..3.9s
-  const buttonPulse = (startSec: number, holdSec = 0.55) => {
-    const startF = Math.round(startSec * fps);
-    const endF = Math.round((startSec + holdSec) * fps);
+  const buttonPulseAtFrame = (startF: number, holdSec = 0.55) => {
+    const endF = startF + Math.round(holdSec * fps);
     const down = spring({
       frame: frame - startF,
       fps,
@@ -91,9 +97,12 @@ export function useAnatomyClock({
     return shape(Math.max(0, down - up));
   };
 
-  const gpio0Press = buttonPulse(1.7, 0.65);
-  const gpio14Press = buttonPulse(3.1, 0.65);
-  const switchFrame = Math.round(2.9 * fps);
+  const resolvedGpio0 = gpio0Frames ?? [Math.round(1.7 * fps)];
+  const resolvedGpio14 = gpio14Frames ?? [Math.round(3.1 * fps)];
+
+  const gpio0Press = Math.max(0, ...resolvedGpio0.map((f) => buttonPulseAtFrame(f, 0.65)));
+  const gpio14Press = Math.max(0, ...resolvedGpio14.map((f) => buttonPulseAtFrame(f, 0.65)));
+  const switchFrame = slotToggleFrame ?? Math.round(2.9 * fps);
   const activeSlot: 0 | 1 = frame >= switchFrame ? 1 : 0;
   const generation = 42 + (frame >= switchFrame ? 1 : 0);
 

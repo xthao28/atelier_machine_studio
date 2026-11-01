@@ -11,6 +11,8 @@ import React from "react";
 import { Sequence, useCurrentFrame } from "remotion";
 import {
   Abs,
+  AmCaptionRail,
+  AmWordEmbed,
   BrandFooter,
   BrandHeader,
   CarouselNav,
@@ -21,10 +23,10 @@ import {
   Cut,
   DashedOrbit,
   formats,
-  MetadataBlock,
   PixelSprite,
   PixelWipe,
   ProjectNumberBlock,
+  SceneSfxTrack,
   SectionHeading,
   Slide,
   spriteFrame,
@@ -33,9 +35,16 @@ import {
   SvgLayer,
   type SpriteSheet,
 } from "../design-system";
+import {
+  resolveSceneDurationFrames,
+  resolveSceneWordFrame,
+  useWordTimeline,
+} from "../hooks/useWordTimeline";
 
-export const SCENE01_BEAT = 180; // 3.0s per beat at 60fps
-export const SCENE01_DURATION = SCENE01_BEAT * 2; // 6.0s total at 60fps
+/** Word-anchored Beat 1 -> Beat 2 cut frame: cuts right as voiceover says "Đây là XUNA" (~frame 192). */
+export const SCENE01_BEAT1_FRAMES = resolveSceneWordFrame("scene-01-hook", "XUNA", 0, -6);
+export const SCENE01_DURATION = resolveSceneDurationFrames("scene-01-hook"); // 480 frames (8.0s @ 60fps)
+export const SCENE01_BEAT2_FRAMES = SCENE01_DURATION - SCENE01_BEAT1_FRAMES;
 
 const { safe, sectionTop } = formats["9:16"];
 const safeWidth = safe.right - safe.left;
@@ -63,7 +72,9 @@ const EXPRESSIONS = [
 
 const Beat1ProjectRevealCover: React.FC = () => {
   const frame = useCurrentFrame();
-  const exprIndex = Math.floor(frame / 60) % EXPRESSIONS.length;
+  const { isStillness, climaxFrame } = useWordTimeline("scene-01-hook");
+  const effectiveFrame = isStillness && climaxFrame > 0 ? climaxFrame - 12 : frame;
+  const exprIndex = Math.floor(effectiveFrame / 60) % EXPRESSIONS.length;
   const activeExpr = EXPRESSIONS[exprIndex]!;
 
   return (
@@ -99,7 +110,7 @@ const Beat1ProjectRevealCover: React.FC = () => {
         <CharacterFrame size={FRAME.size}>
           <PixelSprite
             sheet={TRACK_A_SPRITE}
-            column={spriteFrame(frame, TRACK_A_SPRITE.columns, 5, 24)}
+            column={spriteFrame(effectiveFrame, TRACK_A_SPRITE.columns, 5, 24)}
             row={activeExpr.row}
             scale={3}
           />
@@ -327,12 +338,15 @@ const Beat2WhatXunaDoes: React.FC = () => {
 
 export const Scene01Hook: React.FC = () => (
   <>
-    <Sequence from={0} durationInFrames={SCENE01_BEAT}>
+    <Sequence from={0} durationInFrames={SCENE01_BEAT1_FRAMES}>
       <Beat1ProjectRevealCover />
     </Sequence>
-    <Sequence from={SCENE01_BEAT} durationInFrames={SCENE01_BEAT}>
+    <Sequence from={SCENE01_BEAT1_FRAMES} durationInFrames={SCENE01_BEAT2_FRAMES}>
       <Beat2WhatXunaDoes />
     </Sequence>
+    <AmWordEmbed sceneId="scene-01-hook" top={1145} />
+    <AmCaptionRail sceneId="scene-01-hook" />
+    <SceneSfxTrack sceneId="scene-01-hook" />
   </>
 );
 

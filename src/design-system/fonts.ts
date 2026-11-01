@@ -3,15 +3,22 @@ import { fonts } from "./tokens";
 
 let loading: Promise<void> | null = null;
 
+const VIETNAMESE_FONTS = [
+  { family: "Be Vietnam Pro", weight: "500", style: "normal", file: "fonts/BeVietnamPro-Medium.ttf" },
+  { family: "Be Vietnam Pro", weight: "600", style: "normal", file: "fonts/BeVietnamPro-SemiBold.ttf" },
+  { family: "Be Vietnam Pro", weight: "700", style: "normal", file: "fonts/BeVietnamPro-Bold.ttf" },
+] as const;
+
 /**
- * Loads every ATELIER MACHINE font from public/fonts/ and holds the render until they are ready,
- * so no frame is drawn with a fallback face. Safe to call more than once.
+ * Loads every ATELIER MACHINE font + Vietnamese caption faces from public/fonts/
+ * and holds the render until they are ready, so no frame is drawn with a fallback face.
  */
 export const loadAmFonts = () => {
   if (loading) return loading;
   const handle = delayRender("Loading ATELIER MACHINE fonts");
+  const allFonts = [...fonts, ...VIETNAMESE_FONTS];
   loading = Promise.all(
-    fonts.map(async (f) => {
+    allFonts.map(async (f) => {
       const face = new FontFace(f.family, `url("${staticFile(f.file)}") format("truetype")`, {
         weight: f.weight,
         style: f.style,

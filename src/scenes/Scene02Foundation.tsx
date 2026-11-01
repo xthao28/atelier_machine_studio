@@ -1,13 +1,17 @@
 /**
  * Scene 02 — M04 Hardware & Immortal Foundation (`LilygoExplodedMachine` in 9:16, 60fps).
- * Follows ATELIER MACHINE Design System rules:
- * - Safe zone x: 72–920 (width 848), y: 250–1470
- * - Headline <= 8 words (sentence case), body <= 25 words
- * - 60fps smooth spring-driven exploded view of the real LILYGO T-Display-S3 (62 × 26 mm).
+ *
+ * Word-Anchored Timeline (`useWordTimeline`):
+ * - Explodes the LILYGO T-Display-S3 rig on the spoken keyword `"LifeCore"` (preceded by a 14-frame Stillness latch).
+ * - Depresses `GPIO0` on `"C++11"` and `"LifeSnapshot"`.
+ * - Swaps NVS Flash bank from `life0` (BANK A) to `life1` (BANK B) and depresses `GPIO14` on `"life1"`.
+ * - Collapses the rig after `"CRC32"` integrity verification.
  */
 import React from "react";
 import {
   Abs,
+  AmCaptionRail,
+  AmWordEmbed,
   BrandFooter,
   BrandHeader,
   CarouselNav,
@@ -16,6 +20,7 @@ import {
   ExperimentId,
   formats,
   PixelWipe,
+  SceneSfxTrack,
   SectionHeading,
   Slide,
   TechnicalLabelRow,
@@ -25,16 +30,29 @@ import {
   LilygoExplodedMachine,
 } from "../components/isometric/LilygoExplodedMachine";
 import { useAnatomyClock } from "../hooks/useAnatomyClock";
+import {
+  resolveSceneDurationFrames,
+  resolveSceneWordFrame,
+} from "../hooks/useWordTimeline";
 
-export const SCENE02_DURATION = 300; // 5.0s at 60fps
+export const SCENE02_DURATION = resolveSceneDurationFrames("scene-02-foundation"); // 840 frames (14.0s @ 60fps)
+
+const EXPLODE_AT = resolveSceneWordFrame("scene-02-foundation", "LifeCore", 0, 0);
+const GPIO0_CPP_AT = resolveSceneWordFrame("scene-02-foundation", "C++11", 0, 0);
+const GPIO0_SNAP_AT = resolveSceneWordFrame("scene-02-foundation", "LifeSnapshot", 0, 0);
+const LIFE1_SWAP_AT = resolveSceneWordFrame("scene-02-foundation", "life1", 0, 0);
+const COLLAPSE_AT = resolveSceneWordFrame("scene-02-foundation", "CRC32", 0, 75);
 
 const { safe, sectionTop } = formats["9:16"];
 const safeWidth = safe.right - safe.left;
 
 export const Scene02Foundation: React.FC<{ dark?: boolean }> = ({ dark = false }) => {
   const clock = useAnatomyClock({
-    explodeStart: 28,
-    collapseStart: 250,
+    explodeStart: EXPLODE_AT,
+    collapseStart: COLLAPSE_AT,
+    gpio0Frames: [GPIO0_CPP_AT, GPIO0_SNAP_AT],
+    gpio14Frames: [LIFE1_SWAP_AT],
+    slotToggleFrame: LIFE1_SWAP_AT,
     quantized: false,
   });
 
@@ -65,7 +83,10 @@ export const Scene02Foundation: React.FC<{ dark?: boolean }> = ({ dark = false }
         </Abs>
       </Cut>
 
-      {/* Isometric Exploded LILYGO T-Display-S3 (60fps spring-driven, precomputed static paths) */}
+      {/* HyperFrames Scarce Earned Peak (`embed`) behind the isometric machine */}
+      <AmWordEmbed sceneId="scene-02-foundation" top={612} />
+
+      {/* Isometric Exploded LILYGO T-Display-S3 (60fps spring-driven, word-anchored) */}
       <Abs left={safe.left - 12} top={596} width={safeWidth + 24} height={620}>
         <LilygoExplodedMachine
           explode={clock.explode}
@@ -107,6 +128,10 @@ export const Scene02Foundation: React.FC<{ dark?: boolean }> = ({ dark = false }
       <Cut at={28}>
         <BrandFooter page={{ page: 2, total: 6 }} right={<CarouselNav label="Swipe" />} />
       </Cut>
+
+      {/* HyperFrames Overlay Law: verbatim word-by-word caption rail below BrandFooter */}
+      <AmCaptionRail sceneId="scene-02-foundation" />
+      <SceneSfxTrack sceneId="scene-02-foundation" />
     </Slide>
   );
 };

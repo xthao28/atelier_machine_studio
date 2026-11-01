@@ -13,3 +13,4 @@ export * from "./components/Labels";
 export * from "./components/Content";
 export * from "./components/Frames";
 export * from "./components/Graphics";
+export * from "./components/Captions";

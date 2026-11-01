@@ -51,12 +51,14 @@ const insetFor = (direction: WipeDirection, hidden: number) => {
 };
 
 /**
- * Reveals its children with a hard-edged wipe in 8 steps. Wraps them in a block that keeps
+ * Reveals its children with a hard-edged wipe in discrete steps. Wraps them in a block that keeps
  * the children's own layout; put positioning on the wrapper with `style` or `className`.
  */
 export const PixelWipe = ({
   at = 0,
-  frames = PIXEL_STEPS,
+  frames,
+  steps = PIXEL_STEPS,
+  framesPerStep = 1,
   direction = "right",
   className,
   style,
@@ -64,13 +66,16 @@ export const PixelWipe = ({
 }: {
   at?: number;
   frames?: number;
+  steps?: number;
+  framesPerStep?: number;
   direction?: WipeDirection;
   className?: string;
   style?: CSSProperties;
   children: ReactNode;
 }) => {
   const frame = useCurrentFrame();
-  const p = pixelStep(frame, at, frames);
+  const totalFrames = frames ?? steps * framesPerStep;
+  const p = pixelStep(frame, at, totalFrames);
   if (p === 0) return null;
   return (
     <div className={className} style={{ ...style, clipPath: p < 1 ? insetFor(direction, 1 - p) : undefined }}>
@@ -78,3 +83,14 @@ export const PixelWipe = ({
     </div>
   );
 };
+
+/**
+ * Motion Doctrine — Stillness Before Climax:
+ * Returns true when `frame` is inside the pre-climax stillness window `[climaxFrame - stillnessFrames, climaxFrame)`.
+ * During this window, secondary/ambient motion freezes so the mechanical release hits with maximum contrast.
+ */
+export const isStillnessWindow = (
+  frame: number,
+  climaxFrame: number,
+  stillnessFrames = 14,
+): boolean => frame >= climaxFrame - stillnessFrames && frame < climaxFrame;

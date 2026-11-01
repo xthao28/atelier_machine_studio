@@ -21,9 +21,10 @@ npm run setup:skills
 npx remotion versions
 ```
 
-Sau khi chạy xong `npm run setup:skills`, hãy xác nhận 2 thư mục sau đã tồn tại:
+Sau khi chạy xong `npm run setup:skills`, hãy xác nhận 3 thư mục skill sau đã tồn tại:
 - `.agents/skills/video-shotcraft/SKILL.md`
 - `.agents/skills/anatomy/SKILL.md`
+- `.agents/skills/atelier-motion-doctrine/SKILL.md` (đã tích hợp sẵn trong repo)
 
 ---
 
@@ -44,6 +45,10 @@ Sau khi chạy xong `npm run setup:skills`, hãy xác nhận 2 thư mục sau đ
    - Đọc để nắm bộ **120+ Shot Recipe Cards** (2.5D camera pan/tilt, hero reveal, split-screen, kinetic typography, spotlight zoom, beat-synced cuts).
 3. **`.agents/skills/anatomy/SKILL.md` & [`src/components/isometric/kit/iso-kit.ts`](./src/components/isometric/kit/iso-kit.ts) & [`src/components/isometric/kit/draw.tsx`](./src/components/isometric/kit/draw.tsx)**
    - Đọc để nắm cách dựng các **cỗ máy cơ khí Isometric (2.5D/3D)** bằng SVG đổ bóng 4 sắc độ (`4-tone shading`), sắp xếp thứ tự vẽ (`painter's order`) và nối biến thời gian vào `useCurrentFrame()` / `spring()` của Remotion.
+4. **`.agents/skills/atelier-motion-doctrine/SKILL.md` & [`episodes/ep01-xuna-evolution.script.ts`](./episodes/ep01-xuna-evolution.script.ts) & [`src/hooks/useWordTimeline.ts`](./src/hooks/useWordTimeline.ts)**
+   - **Word-Anchored Timeline (từ `hypit`):** Mọi chuyển động cơ khí, điểm cắt beat và SFX đều được neo vào các từ khoá giọng đọc trong [`src/data/ep01Captions.ts`](./src/data/ep01Captions.ts) thông qua `resolveSceneWordFrame()` / `useWordTimeline()`.
+   - **Caption Model `drop / rail / embed` + Overlay Law (từ `hyperframes`):** Dùng `<AmCaptionRail>` đặt ở `top = 1492` (dưới `BrandFooter` `y = 1400`) để không làm lệch tâm bố cục `y: 250–1470`, kết hợp `<AmWordEmbed>` (tối đa 1 từ khoá khổ lớn mỗi beat ở lớp nền sau cỗ máy) và `<SceneSfxTrack>`.
+   - **Stage-Gate & Seam-Gate QA (từ `openmontage` & `hyperframes`):** Luôn chạy `npm run typecheck && npm run qa:episode` sau khi chỉnh sửa scene hoặc manifest.
 
 ---
 
