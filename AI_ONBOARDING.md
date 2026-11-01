@@ -82,8 +82,19 @@ Sau khi chạy xong `npm run setup:skills`, hãy xác nhận 3 thư mục skill 
      - **`Temperament.h` (Bộ gen khí chất 10 tham số `Q1.14`):** `curiosity`, `sociability`, `playfulness`, `tempo`, `sensitivity`, `moodInertia`, `moodBaseline`, `persistence`, `boredom`, `restfulness`. Khởi tạo lệch nhẹ (`±0.15`) từ `PetId` khi mới nở, dịch chuyển chậm qua **`EvidenceLedger.h`** (chỉ kết tinh `Consolidation` khi đủ độ quan trọng qua `≥ 4 buổi` khác nhau và nhất quán dấu, chống một sự kiện cực đoan làm lệch tính cách).
      - **`Drives.h` & `Affect.h` (Hệ cảm xúc lò xo kép):** Lấy cảm hứng từ kiến trúc cảm xúc WASABI & GAMYGDALA — `Emotion` và `Mood` hoạt động như **2 chiếc lò xo vật lý nối nhau** (cảm xúc tức thời từ kỳ vọng đúng/sai kéo theo tâm trạng có quán tính và tự hồi về baseline).
      - **Biểu hiện (`Expression` & `Track A`):** Tính cách điều khiển nhịp độ frame (`±15%`), thời lượng phản ứng, tần suất tự hành động (`51–69s`) và các biến thể hoạt ảnh (`look_around`, `yawn_stretch`, `bounce_play`, `greet_nuzzle`).
-  5. **Giao tiếp giọng nói & Dạy kiến thức (`Voice V1` & `Knowledge`):**
-     - Giao tiếp tiếng Việt tự nhiên (*"mình – bạn"*), thu âm qua App (consent `U3V`), LLM trả lời dựa trên chính tính cách + tâm trạng thật từ thiết bị truyền lên (`PetSelf`), dạy kiến thức mới và ghi nhận vào **Evolution Journal** (*"Vì sao XUNA thay đổi"*).
+  5. **Giao tiếp giọng nói & Chuyên gia Tri thức Cá nhân (`Voice V1` & `M06 Knowledge Expert`):**
+     - Giao tiếp tiếng Việt tự nhiên (*"mình – bạn"*), thu âm qua App (consent `U3V`), LLM trả lời dựa trên chính tính cách + tâm trạng thật từ thiết bị truyền lên (`PetSelf`).
+     - Học từ tài liệu PDF & quy ước công việc riêng của chủ (`Domain Packs` + `RAG`), trả lời ngắn gọn bằng giọng nói kèm bóng thoại trên màn hình LCD (`<say>`) và gửi bản phân tích Markdown chi tiết vào App.
+  6. **Điều khiển Đa thiết bị & Trợ lý Bàn làm việc (`UDC-1` → `UDC-15` Universal Device Control):**
+     - Giao thức `XTP v1` (50+ công cụ trên Desktop/Mobile/LAN): Đánh thức PC từ xa (`Wake-on-LAN`), mở sẵn project code (`workspace.open`), gọi Coding Agent (`workspace.coding_agent`), truyền file/link trực tiếp giữa PC và điện thoại (`Xuna Beam` LAN P2P), điều khiển cuộc họp (`meeting_ready`), nhạc và Smart TV / Smart Home (`cinema_mode`, `goodnight_mode`).
+     - **Khoá cứng Duyệt lệnh AI (`Physical R2 Approval`):** Khi AI trên máy tính cần chạy thao tác quan trọng, Xuna hiện lên màn hình LCD `320×170` để chủ bấm nút vật lý **`GPIO0` (Cho phép)** hoặc **`GPIO14` (Từ chối)**.
+  7. **Tiến hoá Cộng sinh (`SYM-1` → `SYM-4` Symbiotic Evolution):**
+     - **`Time-Travel Workspace Capsule` (`SYM-1`):** Cuối ngày đóng băng toàn bộ không gian làm việc (`freeze_for_tonight`), sáng hôm sau khôi phục 1 chạm (`rehydrate_project`).
+     - **`Autonomous Watchdogs` & `HabitWorkflowMiner` (`SYM-2`):** Canh tiến trình build/port/RAM trên máy tính rồi báo lên màn hình Xuna khi xong; tự phát hiện chuỗi thao tác lặp lại để đề xuất quy trình tự động hoá.
+     - **`SymbioticRoom` & `XUNA-to-XUNA Social Ecology` (`SYM-3..4`):** Căn phòng trên màn hình đổi bảng màu theo tính cách, giải đố nhịp điệu 2 nút bấm (`RhythmTrickDecoder`), và nhận diện một bé Xuna khác ở gần qua sóng BLE (`SocialBeaconPacket`) để giao lưu và lưu bưu thiếp kỷ niệm (`SocialPostcard`).
+
+> **📌 VIỆC CẦN LÀM TIẾP THEO (NEXT SESSION PLAN):**
+> Đọc ngay [`docs/REEL01_FULL_CAPABILITIES_PLAN.md`](./docs/REEL01_FULL_CAPABILITIES_PLAN.md) để triển khai bản nâng cấp kịch bản và hình ảnh cho `Reel01TwinExperiment` (Show toàn bộ 4 trụ cột siêu năng lực thực chiến + sự sống cộng sinh của Xuna ở Tập 1 trước khi bước vào chuỗi Nhật ký Chế tạo ở Tập 2).
 
 ---
 
